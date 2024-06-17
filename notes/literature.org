@@ -1,0 +1,51 @@
+* Findings
++ TDoA (Time-Delay of Arrival) with Multilateration is good locating method, because only Gateways must be time-synchronized to each other
++ Triangulation doesn't need perfect time-synchronization
+** Technology
++ AD8302 phase detector module
++ Lora/GPS Shield SX1276/SX1278 (Dragino LoRa?)
++ STM32WLEx MCU with LoRa support
++ WuLoRa Sensor Node
+  - based on MSP430FR5969
+  - LoRa Semtech SX-1276 radio module
++ RTK module uBlox NEO-M8P-2
++ Waspmote
+
+* GPS-free Geolocation using LoRa in Low-Power WANs, 2017, Fargas & Petersen
++ Multilateration with TDoA
++ data filtering to remove outliers
++ recurring error due to clock error
++ Generalized Extreme Studentized Deviate (ESD) for outlier detection and removal
+
+* LoRa-based Localization System for Emergency Services in GPS-less Environments, 2019, Mackey & Spachos
++ Trilateration
++ area of 200m x 120m
++ comparison of power consumption to GPS
+
+* Location tracking using LoRa, 2021, Hashim et al.
++ uses LoRa just for transmission, not for locating
++ 10mA power consumption
+** Technologies
++ Arduino Mega
++ Yun Shield for storage
++ Lora/GPS Shield SX1276/SX1278 (Dragino LoRa?)
+
+* A Hybrid Approach to GPS-Free Geolocation over LoRa, 2018, Danebjer & Halldorsson
++ Time-of-Flight (ToF) and Received Signal Strength (RSSI) + Accelerometer
++ error of 272m
+
+* Real-Time Geolocation Approach through LoRa on Internet of Things, 2021, Bouras et al.
++ uses TDoA with multilateration
+
+* Low Power RSSI Outdoor Localization System, 2016, El Agroudy et al.
++ focus on battery-lifetime-optimization => 6.8µA
++ uses Zigbee
++ anchors are equipped with GPS
++ 6m radius
+
+* Combining LoRa and RTK to Achieve a High Precision Self-Sustaining Geo-localization System, 2018, Magno et al.
++ accuracy below 1m at 1km distances
++ uses GNSS-RTK for better accuracy
+
+* Enhanced Indoor Navigation System with Beacons and Kalman Filters, 2018, Mackey & Spachos
++ BLE with Kalman-Filter for better accuracy

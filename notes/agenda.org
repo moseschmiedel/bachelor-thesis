@@ -1,0 +1,3 @@
+* Idea
+- [ ] focus on low-power/zero-power solution with integrated solar-/rf-energy-harvesting
+- [ ] improve accuracy by combining TDoA with Accelerometer and Gyro-Sensor using Kalman-Filter
