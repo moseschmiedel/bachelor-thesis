@@ -1,3 +1,6 @@
 * Idea
-- [ ] focus on low-power/zero-power solution with integrated solar-/rf-energy-harvesting
+- [X] focus on low-power/zero-power solution with integrated solar-/rf-energy-harvesting
+  - Batteries:
+    + CR2 3V 1000mAh
+    + 9V 10a Lithium Rauchmelder
 - [ ] improve accuracy by combining TDoA with Accelerometer and Gyro-Sensor using Kalman-Filter
