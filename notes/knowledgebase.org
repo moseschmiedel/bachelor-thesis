@@ -1,0 +1,5 @@
+* Knowledgebase
+** Communication windows
+Use predefined time windows for communications. So the receiver just has be in receiving mode during connection establishment.
+After the connection was established and the (recurring) time window for the conversation was agreed upon, the receiver just has
+to be active listening during the agreed upon time and can be powered down or sleeping during the rest of the time.
