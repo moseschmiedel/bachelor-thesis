@@ -10,6 +10,8 @@
   - LoRa Semtech SX-1276 radio module
 + RTK module uBlox NEO-M8P-2
 + Waspmote
++ Murata Electronics CMWX1ZZABZ-078
++ Murata Electronics CMWX1ZZABZ-093
 
 * GPS-free Geolocation using LoRa in Low-Power WANs, 2017, Fargas & Petersen
 + Multilateration with TDoA
