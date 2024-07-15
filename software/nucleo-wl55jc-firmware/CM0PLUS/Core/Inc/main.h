@@ -57,6 +57,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define T_VCP_RX_Pin GPIO_PIN_3
+#define T_VCP_RX_GPIO_Port GPIOA
+#define T_VCP_RXA2_Pin GPIO_PIN_2
+#define T_VCP_RXA2_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

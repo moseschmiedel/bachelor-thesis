@@ -10,6 +10,7 @@
 
 #include "main.h"
 #include "subghz.h"
+#include "utils.h"
 
 #define LORA_BAND_K_BASE_FREQ (863000000UL)
 #define LORA_BAND_L_BASE_FREQ (865000000UL)
@@ -26,6 +27,7 @@
 #define LORA_BAND_Q_BANDWIDTH (300000U)
 
 HAL_StatusTypeDef LoRa_Init(uint16_t preamble_length, Radio_Header_Type_t header_type, uint8_t payload_length, Radio_CRC_Type_t crc, Radio_IQ_Setup_t iq_setup);
-
+HAL_StatusTypeDef LoRa_Send_Packet(uint8_t *payload);
+HAL_StatusTypeDef LoRa_Recv_Packet(Future* future, uint8_t *buffer, uint32_t size);
 
 #endif /* INC_LORA_H_ */

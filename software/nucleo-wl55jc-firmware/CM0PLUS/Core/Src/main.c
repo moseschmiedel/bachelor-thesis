@@ -18,12 +18,13 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "subghz.h"
-#include "lora.h"
-#include "lora_locator.h"
+#include "usart.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "Apps/lora_locator.h"
 
 /* USER CODE END Includes */
 
@@ -83,23 +84,36 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
+  MX_DMA_Init();
   MX_SUBGHZ_Init();
+  MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
   // DRIVER INIT
-  LoRa_Init(12, RADIO_HEADER_TYPE_IMPLICIT, sizeof(LoRaLocatorPacket), RADIO_CRC_ENABLED, RADIO_IQ_SETUP_STANDARD);
+  LoRa_Locator_Configure_LoRa_Modem();
 
   // APPS INIT
-  LoRa_Locator_Init();
+#if defined IS_BEACON_DEVICE
+  LoRa_Locator_Init(LORA_LOCATOR_BEACON);
+#elif defined IS_TAG_DEVICE
+  LoRa_Locator_Init(LORA_LOCATOR_TAG);
+#endif
+  dbg_printf("CM0+ Finished boot!\n");
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+#if IS_BEACON_DEVICE == 1
+  dbg_printf("LoRaLocator Beacon started successfully!\n");
+#elif IS_TAG_DEVICE == 1
+  dbg_printf("LoRaLocator Tag started successfully!\n");
+#endif
   while (1)
   {
-    /* USER CODE END WHILE */
 	  LoRa_Locator_Run();
+    /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
@@ -116,6 +130,7 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
+  dbg_printf("Error!\n");
   __disable_irq();
   while (1)
   {
