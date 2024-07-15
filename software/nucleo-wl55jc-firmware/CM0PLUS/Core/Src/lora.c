@@ -71,21 +71,20 @@ void LoRa_Recv_Cplt_Callback(SUBGHZ_HandleTypeDef *subghzHandle) {
 	rx_future_g->state = FUTURE_SUCCESS;
 }
 
-void LoRa_Recv_Timeout_Callback(SUBGHZ_HandleTypeDef *subghzHandle) {
-	if (rx_future_g == NULL) {
-		return;
-	}
-
-	rx_future_g->state = FUTURE_ERROR;
-}
-
 void LoRa_Recv_Error_Callback(SUBGHZ_HandleTypeDef *subghzHandle) {
 	if (rx_future_g == NULL) {
 		return;
 	}
 
+	Radio_RxBufferStatus_t rx_status = Radio_Get_RxBufferStatus(subghzHandle);
+
+	char str[70];
+	sprintf(str, "[RX] Status: mode: %u, cmd-status: %u", rx_status.mode, rx_status.command_status);
+	dbg_printf(str);
+
 	rx_future_g->state = FUTURE_ERROR;
 }
+
 
 HAL_StatusTypeDef LoRa_Recv_Packet(Future *future, uint8_t *buffer, uint32_t size) {
 	if (HAL_SUBGHZ_GetState(&hsubghz) != HAL_SUBGHZ_STATE_READY) {
@@ -94,20 +93,19 @@ HAL_StatusTypeDef LoRa_Recv_Packet(Future *future, uint8_t *buffer, uint32_t siz
 	}
 
 	hsubghz.RxCpltCallback = &LoRa_Recv_Cplt_Callback;
-	hsubghz.RxTxTimeoutCallback = &LoRa_Recv_Timeout_Callback;
+	hsubghz.RxTxTimeoutCallback = &LoRa_Recv_Error_Callback;
 	hsubghz.HeaderErrorCallback = &LoRa_Recv_Error_Callback;
 	hsubghz.CRCErrorCallback = &LoRa_Recv_Error_Callback;
 
 	future->buffer = buffer;
 	future->size = size;
 
-	if (Radio_Set_RX(&hsubghz, 0) == HAL_ERROR) {
+	future->state = FUTURE_WAITING;
+	rx_future_g = future;
+
+	if (Radio_Set_RX(&hsubghz, 2000) == HAL_ERROR) {
 		Error_Handler();
 	}
-
-	future->state = FUTURE_WAITING;
-
-	rx_future_g = future;
 
 	return HAL_OK;
 }

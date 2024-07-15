@@ -172,4 +172,26 @@ HAL_StatusTypeDef Radio_Set_PacketParams(SUBGHZ_HandleTypeDef* subghzHandle, uin
 	return HAL_SUBGHZ_ExecSetCmd(subghzHandle, RADIO_SET_PACKETPARAMS, cmd_data, CMD_DATA_SIZE);
 }
 
+/**
+ * Indicates error of the SPI Get command by setting `command_status` to `RADIO_GET_CMD_ERROR` in return struct
+ */
+Radio_RxBufferStatus_t Radio_Get_RxBufferStatus(SUBGHZ_HandleTypeDef* subghzHandle) {
+	Radio_RxBufferStatus_t buffer_status;
+
+#undef CMD_DATA_SIZE
+#define CMD_DATA_SIZE 3
+	uint8_t cmd_data[CMD_DATA_SIZE];
+	if (HAL_SUBGHZ_ExecGetCmd(&hsubghz, RADIO_GET_RXBUFFERSTATUS, cmd_data, CMD_DATA_SIZE) != HAL_OK) {
+		buffer_status.command_status = RADIO_GET_CMD_ERROR;
+		return buffer_status;
+	}
+
+	buffer_status.mode = cmd_data[0] >> 4 && 0xFF;
+	buffer_status.command_status = cmd_data[0] >> 1 && 0xFF;
+	buffer_status.rx_payload_length = cmd_data[1];
+	buffer_status.rx_buffer_pointer = cmd_data[2];
+
+	return buffer_status;
+}
+
 /* USER CODE END 1 */

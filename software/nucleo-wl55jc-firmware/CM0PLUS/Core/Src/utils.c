@@ -22,6 +22,8 @@ Future init_future() {
 }
 
 void future_await(Future* future) {
+	dbg_printf("start of await\n");
 	while (future->state == FUTURE_WAITING) {
 	};
+	dbg_printf("end of await\n");
 }

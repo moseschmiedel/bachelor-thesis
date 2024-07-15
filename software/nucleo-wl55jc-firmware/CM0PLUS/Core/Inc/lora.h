@@ -12,6 +12,8 @@
 #include "subghz.h"
 #include "utils.h"
 
+#include <string.h>
+
 #define LORA_BAND_K_BASE_FREQ (863000000UL)
 #define LORA_BAND_L_BASE_FREQ (865000000UL)
 #define LORA_BAND_M_BASE_FREQ (868000000UL)

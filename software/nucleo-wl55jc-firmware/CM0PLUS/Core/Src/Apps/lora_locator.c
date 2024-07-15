@@ -88,7 +88,7 @@ ProcessState_t LoRa_Locator_Run() {
 
 	switch (lora_locator_device_type_g) {
 	case LORA_LOCATOR_UNDEF_DEVICE: {
-		dbg_printf("`device_type_g` is uninitialized. Maybe you forgot to set the device type when calling `LoRaLocatorInit()`");
+		dbg_printf("`device_type_g` is uninitialized. Maybe you forgot to set the device type when calling `LoRaLocatorInit()`\n");
 	} break;
 	case LORA_LOCATOR_BEACON: {
 		LoRaLocatorPacket packet;

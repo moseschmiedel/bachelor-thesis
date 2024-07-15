@@ -100,6 +100,31 @@ typedef enum {
 	RADIO_IQ_SETUP_INVERTED = 0x1,
 } Radio_IQ_Setup_t;
 
+
+typedef enum {
+	RADIO_STANDBY_RC13MHZ_MODE = 0x2,
+	RADIO_STANDBY_HSE32_MODE = 0x3,
+	RADIO_FS_MODE = 0x4,
+	RADIO_RX_MODE = 0x5,
+	RADIO_TX_MODE = 0x6,
+} Radio_Mode_t;
+
+typedef enum {
+	RADIO_GET_CMD_ERROR = 0x1, // reserved for indicating error of SPI Read_Register command
+	RADIO_RX_SUCCESSFULL= 0x2,
+	RADIO_CMD_TIMED_OUT = 0x3,
+	RADIO_CMD_PROCESSING_ERROR = 0x4,
+	RADIO_COMMAND_EXEC_FAILURE = 0x5,
+	RADIO_TX_SUCCESSFULL = 0x6,
+} Radio_CommandStatus_t;
+
+typedef struct {
+	Radio_Mode_t mode;
+	Radio_CommandStatus_t command_status;
+	uint8_t rx_payload_length;
+	uint8_t rx_buffer_pointer;
+} Radio_RxBufferStatus_t;
+
 /* USER CODE END Private defines */
 
 void MX_SUBGHZ_Init(void);
@@ -112,6 +137,8 @@ HAL_StatusTypeDef Radio_Set_PacketType(SUBGHZ_HandleTypeDef* subghzHandle, Radio
 HAL_StatusTypeDef Radio_Set_RfFrequency(SUBGHZ_HandleTypeDef* subghzHandle, uint32_t freq);
 HAL_StatusTypeDef Radio_Set_ModulationParams(SUBGHZ_HandleTypeDef* subghzHandle, Radio_Spreading_Factor_t spreading_factor, Radio_Bandwidth_t bandwidth, Radio_Error_Correction_Coding_Rate_t coding_rate, Radio_Low_Data_Rate_Optimization_t ldro);
 HAL_StatusTypeDef Radio_Set_PacketParams(SUBGHZ_HandleTypeDef* subghzHandle, uint16_t preamble_length, Radio_Header_Type_t header_type, uint8_t payload_length, Radio_CRC_Type_t crc, Radio_IQ_Setup_t invert_iq);
+
+Radio_RxBufferStatus_t Radio_Get_RxBufferStatus(SUBGHZ_HandleTypeDef* subghzHandle);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
