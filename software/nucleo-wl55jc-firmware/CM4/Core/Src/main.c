@@ -94,10 +94,15 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  uint8_t* boot_msg = "CM4 finished boot!\n";
-  HAL_UART_Transmit_DMA(&huart2, boot_msg, strlen(boot_msg));
+//  uint8_t* boot_msg = "CM4 finished boot!\n";
+//  HAL_UART_Transmit_DMA(&huart2, boot_msg, strlen(boot_msg));
 
   /* USER CODE END 2 */
+
+  /* Initialize leds */
+  BSP_LED_Init(LED_BLUE);
+  BSP_LED_Init(LED_GREEN);
+  BSP_LED_Init(LED_RED);
 
   /* Boot CPU2 */
   HAL_PWREx_ReleaseCore(PWR_CORE_CPU2);

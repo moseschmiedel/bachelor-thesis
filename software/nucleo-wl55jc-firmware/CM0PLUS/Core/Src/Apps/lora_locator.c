@@ -86,21 +86,39 @@ ProcessState_t LoRa_Locator_Run() {
 
 	uint8_t packet_buf[sizeof(LoRaLocatorPacket)];
 
+	LoRa_CheckHealthAndReset();
+
 	switch (lora_locator_device_type_g) {
 	case LORA_LOCATOR_UNDEF_DEVICE: {
 		dbg_printf("`device_type_g` is uninitialized. Maybe you forgot to set the device type when calling `LoRaLocatorInit()`\n");
 	} break;
 	case LORA_LOCATOR_BEACON: {
-		LoRaLocatorPacket packet;
-		packet.type = LORA_LOC_TIMESTAMP;
-		packet.timestamp = 42;
+		LoRaModem_State_t lora_state = LoRa_GetState();
+			if (lora_state == LORA_MODEM_STBY) {
 
-		write_packet_buffer(packet_buf, packet);
+			LoRaLocatorPacket packet;
+			packet.type = LORA_LOC_TIMESTAMP;
+			packet.timestamp = 42;
 
-		if (LoRa_Send_Packet(packet_buf) == HAL_BUSY) {
-			dbg_printf("Retry transmit.\n");
-		} else {
+			write_packet_buffer(packet_buf, packet);
+
+			if (LoRa_Send_Packet(packet_buf) == HAL_BUSY) {
+				dbg_printf("Retry transmit.\n");
+			} else {
+				dbg_printf("Try sending LoRaLocatorPacket...\n");
+			}
+			LoRa_print_debug_tx();
+		} else
+		if (lora_state == LORA_MODEM_TX) {
+			LoRa_print_debug_tx();
+		}
+		if (lora_state == LORA_MODEM_TX_CPLT) {
+			LoRa_ResetState();
 			dbg_printf("Sent LoRaLocatorPacket!\n");
+		} else
+		if (lora_state == LORA_MODEM_TX_ERROR) {
+			LoRa_ResetState();
+			dbg_printf("Error while sending LoRaLocatorPacket!\n");
 		}
 	} break;
 	case LORA_LOCATOR_TAG: {

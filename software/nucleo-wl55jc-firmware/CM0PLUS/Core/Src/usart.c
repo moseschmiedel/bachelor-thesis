@@ -150,8 +150,12 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 
 /* USER CODE BEGIN 1 */
 
-HAL_StatusTypeDef UART_Print_String(UART_HandleTypeDef* uartHandle, char* str, uint32_t size) {
-	return HAL_UART_Transmit_DMA(uartHandle, str, size);
+uint8_t UART_get_TC(UART_HandleTypeDef* uartHandle) {
+	return uartHandle->Instance->ISR & USART_ISR_TC_Msk;
+}
+
+HAL_StatusTypeDef UART_Print_String(UART_HandleTypeDef* uartHandle, uint8_t* payload, uint16_t size) {
+	return HAL_UART_Transmit_DMA(uartHandle, payload, size);
 }
 
 /* USER CODE END 1 */

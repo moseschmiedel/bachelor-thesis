@@ -114,5 +114,20 @@
 			<type>1</type>
 			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_uart_ex.c</locationURI>
 		</link>
+		<link>
+			<name>Drivers/STM32WLxx_HAL_Driver/stm32wlxx_hal_usart.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_usart.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/STM32WLxx_HAL_Driver/stm32wlxx_hal_usart_ex.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Drivers/STM32WLxx_HAL_Driver/Src/stm32wlxx_hal_usart_ex.c</locationURI>
+		</link>
+		<link>
+			<name>Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo.c</name>
+			<type>1</type>
+			<locationURI>PARENT-1-PROJECT_LOC/Drivers/BSP/STM32WLxx_Nucleo/stm32wlxx_nucleo.c</locationURI>
+		</link>
 	</linkedResources>
 </projectDescription>

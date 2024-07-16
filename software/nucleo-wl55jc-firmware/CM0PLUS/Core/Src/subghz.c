@@ -82,11 +82,21 @@ void HAL_SUBGHZ_MspDeInit(SUBGHZ_HandleTypeDef* subghzHandle)
 }
 
 /* USER CODE BEGIN 1 */
+HAL_StatusTypeDef Radio_Set_Payload(SUBGHZ_HandleTypeDef* subghzHandle, uint8_t offset, uint8_t* payload, uint8_t size) {
+	BEGIN_CRITICAL_SECTION();
+
+	HAL_SUBGHZ_WriteBuffer(subghzHandle, offset, payload, size);
+
+	EXIT_CRITICAL_SECTION();
+}
 HAL_StatusTypeDef Radio_Set_Standby(SUBGHZ_HandleTypeDef* subghzHandle, Radio_Standby_Clk_t clk_conf) {
 	#undef CMD_DATA_SIZE
 	#define CMD_DATA_SIZE 1
 	uint8_t cmd_data[CMD_DATA_SIZE] = {clk_conf};
-	return HAL_SUBGHZ_ExecSetCmd(subghzHandle, RADIO_SET_STANDBY, cmd_data, CMD_DATA_SIZE);
+	BEGIN_CRITICAL_SECTION();
+	HAL_StatusTypeDef result = HAL_SUBGHZ_ExecSetCmd(subghzHandle, RADIO_SET_STANDBY, cmd_data, CMD_DATA_SIZE);
+	EXIT_CRITICAL_SECTION();
+	return result;
 }
 
 HAL_StatusTypeDef Radio_Set_TX(SUBGHZ_HandleTypeDef* subghzHandle, uint32_t timeout) {
@@ -118,6 +128,61 @@ HAL_StatusTypeDef Radio_Set_PacketType(SUBGHZ_HandleTypeDef* subghzHandle, Radio
 	return HAL_SUBGHZ_ExecSetCmd(subghzHandle, RADIO_SET_PACKETTYPE, cmd_data, CMD_DATA_SIZE);
 }
 
+HAL_StatusTypeDef Radio_Set_BufferBaseAddress(SUBGHZ_HandleTypeDef* subghzHandle, uint8_t tx_baseaddr, uint8_t rx_baseaddr) {
+	#undef CMD_DATA_SIZE
+	#define CMD_DATA_SIZE 2
+	uint8_t cmd_data[CMD_DATA_SIZE] = {
+			tx_baseaddr,
+			rx_baseaddr,
+	};
+	return HAL_SUBGHZ_ExecSetCmd(subghzHandle, RADIO_SET_BUFFERBASEADDRESS, cmd_data, CMD_DATA_SIZE);
+}
+
+/***************************
+ * Interrupt configuration *
+ ***************************/
+
+HAL_StatusTypeDef Radio_Cfg_DioIrq(SUBGHZ_HandleTypeDef* subghzHandle, uint16_t irq0mask, uint16_t irq1mask, uint16_t irq2mask, uint16_t irq3mask) {
+	#undef CMD_DATA_SIZE
+	#define CMD_DATA_SIZE 8
+	uint8_t cmd_data[CMD_DATA_SIZE] = {
+			(uint8_t) (irq0mask >> 8) & 0xFF,
+			(uint8_t) (irq0mask >> 0) & 0xFF,
+			(uint8_t) (irq1mask >> 8) & 0xFF,
+			(uint8_t) (irq1mask >> 0) & 0xFF,
+			(uint8_t) (irq2mask >> 8) & 0xFF,
+			(uint8_t) (irq2mask >> 0) & 0xFF,
+			(uint8_t) (irq3mask >> 8) & 0xFF,
+			(uint8_t) (irq3mask >> 0) & 0xFF,
+	};
+	return HAL_SUBGHZ_ExecSetCmd(subghzHandle, RADIO_CFG_DIOIRQ, cmd_data, CMD_DATA_SIZE);
+}
+
+HAL_StatusTypeDef Radio_Get_IrqStatus(SUBGHZ_HandleTypeDef* subghzHandle, Radio_Irq_Status_t* irq_status) {
+	#undef CMD_DATA_SIZE
+	#define CMD_DATA_SIZE 3
+	uint8_t cmd_data[CMD_DATA_SIZE];
+	HAL_StatusTypeDef result;
+	if ((result = HAL_SUBGHZ_ExecGetCmd(subghzHandle, RADIO_GET_IRQSTATUS, cmd_data, CMD_DATA_SIZE)) != HAL_OK) {
+		return result;
+	}
+
+	return HAL_OK;
+}
+
+HAL_StatusTypeDef Radio_Clr_IrqStatus(SUBGHZ_HandleTypeDef* subghzHandle, uint16_t irq_clear_mask) {
+	#undef CMD_DATA_SIZE
+	#define CMD_DATA_SIZE 2
+	uint8_t cmd_data[CMD_DATA_SIZE] = {
+			(uint8_t) (irq_clear_mask >> 8) & 0xFF,
+			(uint8_t) (irq_clear_mask >> 0) & 0xFF,
+	};
+	return HAL_SUBGHZ_ExecSetCmd(subghzHandle, RADIO_CLR_IRQSTATUS, cmd_data, CMD_DATA_SIZE);
+}
+
+
+
+
 #define XTAL_FREQ ( 32000000UL )
 
 #define FREQ_TO_RF_PLL_FREQ( rf_pll, freq )                                  \
@@ -133,10 +198,10 @@ HAL_StatusTypeDef Radio_Set_RfFrequency(SUBGHZ_HandleTypeDef* subghzHandle, uint
 	uint32_t rf_pll_freq = 0;
 	FREQ_TO_RF_PLL_FREQ(rf_pll_freq, freq);
 	uint8_t cmd_data[CMD_DATA_SIZE] = {
-			(uint8_t) rf_pll_freq >> 24 && 0xFF,
-			(uint8_t) rf_pll_freq >> 16 && 0xFF,
-			(uint8_t) rf_pll_freq >> 8 && 0xFF,
-			(uint8_t) rf_pll_freq && 0xFF,
+			(uint8_t) rf_pll_freq >> 24 & 0xFF,
+			(uint8_t) rf_pll_freq >> 16 & 0xFF,
+			(uint8_t) rf_pll_freq >> 8 & 0xFF,
+			(uint8_t) rf_pll_freq & 0xFF,
 	};
 	return HAL_SUBGHZ_ExecSetCmd(subghzHandle, RADIO_SET_RFFREQUENCY, cmd_data, CMD_DATA_SIZE);
 }
@@ -172,11 +237,33 @@ HAL_StatusTypeDef Radio_Set_PacketParams(SUBGHZ_HandleTypeDef* subghzHandle, uin
 	return HAL_SUBGHZ_ExecSetCmd(subghzHandle, RADIO_SET_PACKETPARAMS, cmd_data, CMD_DATA_SIZE);
 }
 
+HAL_StatusTypeDef Radio_Set_PaConfig(SUBGHZ_HandleTypeDef* subghzHandle, Radio_PA_Duty_Cycle_t duty_cycle, Radio_Max_Power_t max_power, Radio_PA_Sel_t pa_sel) {
+	#undef CMD_DATA_SIZE
+	#define CMD_DATA_SIZE 4
+	uint8_t cmd_data[CMD_DATA_SIZE] = {
+			duty_cycle,
+			max_power,
+			pa_sel,
+			0x1,
+	};
+	return HAL_SUBGHZ_ExecSetCmd(subghzHandle, RADIO_SET_PACONFIG, cmd_data, CMD_DATA_SIZE);
+}
+
+HAL_StatusTypeDef Radio_Set_TxParams(SUBGHZ_HandleTypeDef* subghzHandle, Radio_TX_Power_t power, Radio_Ramp_Time_t ramp_time) {
+	#undef CMD_DATA_SIZE
+	#define CMD_DATA_SIZE 2
+	uint8_t cmd_data[CMD_DATA_SIZE] = {
+			power,
+			ramp_time,
+	};
+	return HAL_SUBGHZ_ExecSetCmd(subghzHandle, RADIO_SET_TXPARAMS, cmd_data, CMD_DATA_SIZE);
+}
+
 /**
  * Indicates error of the SPI Get command by setting `command_status` to `RADIO_GET_CMD_ERROR` in return struct
  */
-Radio_RxBufferStatus_t Radio_Get_RxBufferStatus(SUBGHZ_HandleTypeDef* subghzHandle) {
-	Radio_RxBufferStatus_t buffer_status;
+Radio_RX_Buffer_Status_t Radio_Get_RxBufferStatus(SUBGHZ_HandleTypeDef* subghzHandle) {
+	Radio_RX_Buffer_Status_t buffer_status;
 
 #undef CMD_DATA_SIZE
 #define CMD_DATA_SIZE 3
@@ -186,12 +273,41 @@ Radio_RxBufferStatus_t Radio_Get_RxBufferStatus(SUBGHZ_HandleTypeDef* subghzHand
 		return buffer_status;
 	}
 
-	buffer_status.mode = cmd_data[0] >> 4 && 0xFF;
-	buffer_status.command_status = cmd_data[0] >> 1 && 0xFF;
+	buffer_status.mode = cmd_data[0] >> 4 & 0xFF;
+	buffer_status.command_status = cmd_data[0] >> 1 & 0xFF;
 	buffer_status.rx_payload_length = cmd_data[1];
 	buffer_status.rx_buffer_pointer = cmd_data[2];
 
 	return buffer_status;
+}
+
+HAL_StatusTypeDef Radio_GetStatus(SUBGHZ_HandleTypeDef* subghzHandle, Radio_Status_t* status) {
+#undef CMD_DATA_SIZE
+#define CMD_DATA_SIZE 1
+	uint8_t cmd_data[CMD_DATA_SIZE];
+	HAL_StatusTypeDef result;
+	if ((result = HAL_SUBGHZ_ExecGetCmd(&hsubghz, RADIO_GET_STATUS, cmd_data, CMD_DATA_SIZE)) != HAL_OK) {
+		return result;
+	}
+
+	status->mode = cmd_data[0] >> 4 & 0x7;
+	status->command_status = cmd_data[0] >> 1 & 0x7;
+
+	return HAL_OK;
+}
+
+/**********************
+ * Interrupt Handlers *
+ **********************/
+
+void HAL_SUBGHZ_TxCpltCallback(SUBGHZ_HandleTypeDef* subghzHandle) {
+	dbg_printf("TX Complete\n");
+}
+void HAL_SUBGHZ_RxCpltCallback(SUBGHZ_HandleTypeDef* subghzHandle) {
+	dbg_printf("RX Complete\n");
+}
+void HAL_SUBGHZ_RxTxTimeoutCallback(SUBGHZ_HandleTypeDef* subghzHandle) {
+	dbg_printf("RX/TX Timeout\n");
 }
 
 /* USER CODE END 1 */

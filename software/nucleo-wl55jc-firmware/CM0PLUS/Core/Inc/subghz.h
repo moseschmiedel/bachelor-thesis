@@ -29,6 +29,7 @@ extern "C" {
 #include "main.h"
 
 /* USER CODE BEGIN Includes */
+#include "utils.h"
 
 /* USER CODE END Includes */
 
@@ -116,14 +117,65 @@ typedef enum {
 	RADIO_CMD_PROCESSING_ERROR = 0x4,
 	RADIO_COMMAND_EXEC_FAILURE = 0x5,
 	RADIO_TX_SUCCESSFULL = 0x6,
-} Radio_CommandStatus_t;
+} Radio_Command_Status_t;
 
 typedef struct {
 	Radio_Mode_t mode;
-	Radio_CommandStatus_t command_status;
+	Radio_Command_Status_t command_status;
 	uint8_t rx_payload_length;
 	uint8_t rx_buffer_pointer;
-} Radio_RxBufferStatus_t;
+} Radio_RX_Buffer_Status_t;
+
+typedef struct {
+	Radio_Mode_t mode;
+	Radio_Command_Status_t command_status;
+} Radio_Status_t;
+
+typedef enum {
+	RADIO_PA_DUTY_0 = 0x0,
+	RADIO_PA_DUTY_1 = 0x1,
+	RADIO_PA_DUTY_2 = 0x2,
+	RADIO_PA_DUTY_3 = 0x3,
+	RADIO_PA_DUTY_4 = 0x4,
+	RADIO_PA_DUTY_5 = 0x5,
+	RADIO_PA_DUTY_6 = 0x6,
+	RADIO_PA_DUTY_7 = 0x7,
+} Radio_PA_Duty_Cycle_t;
+
+typedef enum {
+	RADIO_MAX_POWER_0 = 0x0,
+	RADIO_MAX_POWER_1 = 0x1,
+	RADIO_MAX_POWER_2 = 0x2,
+	RADIO_MAX_POWER_3 = 0x3,
+	RADIO_MAX_POWER_4 = 0x4,
+	RADIO_MAX_POWER_5 = 0x5,
+	RADIO_MAX_POWER_6 = 0x6,
+	RADIO_MAX_POWER_7 = 0x7,
+} Radio_Max_Power_t;
+
+typedef enum {
+	RADIO_HIGH_POWER_PA = 0x0,
+	RADIO_LOW_POWER_PA = 0x1,
+} Radio_PA_Sel_t;
+
+typedef uint8_t Radio_TX_Power_t;
+
+typedef enum {
+	RADIO_RAMP_10us = 0x0,
+	RADIO_RAMP_20us = 0x1,
+	RADIO_RAMP_40us = 0x2,
+	RADIO_RAMP_80us = 0x3,
+	RADIO_RAMP_200us = 0x4,
+	RADIO_RAMP_800us = 0x5,
+	RADIO_RAMP_1700us = 0x6,
+	RADIO_RAMP_3400us = 0x7,
+} Radio_Ramp_Time_t;
+
+typedef struct {
+	Radio_Mode_t mode;
+	Radio_Command_Status_t cmd_status;
+	uint16_t interrupt_status;
+} Radio_Irq_Status_t;
 
 /* USER CODE END Private defines */
 
@@ -135,10 +187,23 @@ HAL_StatusTypeDef Radio_Set_TX(SUBGHZ_HandleTypeDef* subghzHandle, uint32_t time
 HAL_StatusTypeDef Radio_Set_RX(SUBGHZ_HandleTypeDef* subghzHandle, uint32_t timeout);
 HAL_StatusTypeDef Radio_Set_PacketType(SUBGHZ_HandleTypeDef* subghzHandle, Radio_Packet_Type_t packet_type);
 HAL_StatusTypeDef Radio_Set_RfFrequency(SUBGHZ_HandleTypeDef* subghzHandle, uint32_t freq);
+HAL_StatusTypeDef Radio_Set_BufferBaseAddress(SUBGHZ_HandleTypeDef* subghzHandle, uint8_t tx_baseaddr, uint8_t rx_baseaddr);
+
+/**
+ * See RM p198 for definition of Interrupt bits
+ */
+HAL_StatusTypeDef Radio_Cfg_DioIrq(SUBGHZ_HandleTypeDef* subghzHandle, uint16_t irq0mask, uint16_t irq1mask, uint16_t irq2mask, uint16_t irq3mask);
+HAL_StatusTypeDef Radio_Get_IrqStatus(SUBGHZ_HandleTypeDef* subghzHandle, Radio_Irq_Status_t* irq_status);
+HAL_StatusTypeDef Radio_Clr_IrqStatus(SUBGHZ_HandleTypeDef* subghzHandle, uint16_t irq_clear_mask);
+
 HAL_StatusTypeDef Radio_Set_ModulationParams(SUBGHZ_HandleTypeDef* subghzHandle, Radio_Spreading_Factor_t spreading_factor, Radio_Bandwidth_t bandwidth, Radio_Error_Correction_Coding_Rate_t coding_rate, Radio_Low_Data_Rate_Optimization_t ldro);
 HAL_StatusTypeDef Radio_Set_PacketParams(SUBGHZ_HandleTypeDef* subghzHandle, uint16_t preamble_length, Radio_Header_Type_t header_type, uint8_t payload_length, Radio_CRC_Type_t crc, Radio_IQ_Setup_t invert_iq);
+HAL_StatusTypeDef Radio_Set_PaConfig(SUBGHZ_HandleTypeDef* subghzHandle, Radio_PA_Duty_Cycle_t duty_cycle, Radio_Max_Power_t header_type, Radio_PA_Sel_t pa_sel);
+HAL_StatusTypeDef Radio_Set_TxParams(SUBGHZ_HandleTypeDef* subghzHandle, Radio_TX_Power_t power, Radio_Ramp_Time_t ramp_time);
 
-Radio_RxBufferStatus_t Radio_Get_RxBufferStatus(SUBGHZ_HandleTypeDef* subghzHandle);
+HAL_StatusTypeDef Radio_GetStatus(SUBGHZ_HandleTypeDef* subghzHandle, Radio_Status_t* status);
+Radio_RX_Buffer_Status_t Radio_Get_RxBufferStatus(SUBGHZ_HandleTypeDef* subghzHandle);
+
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

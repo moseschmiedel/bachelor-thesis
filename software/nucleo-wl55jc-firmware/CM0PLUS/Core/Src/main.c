@@ -110,6 +110,7 @@ int main(void)
   while (1)
   {
 	  LoRa_Locator_Run();
+	  run_printer();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

@@ -42,7 +42,8 @@ void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 
-HAL_StatusTypeDef UART_Print_String(UART_HandleTypeDef* uartHandle, char* str, uint32_t size);
+uint8_t UART_get_TC(UART_HandleTypeDef* uartHandle);
+HAL_StatusTypeDef UART_Print_String(UART_HandleTypeDef* uartHandle, uint8_t* payload, uint16_t size);
 
 /* USER CODE END Prototypes */
 

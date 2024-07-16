@@ -13,6 +13,12 @@
 
 #include "usart.h"
 
+
+#define BEGIN_CRITICAL_SECTION() uint32_t __primask = __get_PRIMASK(); __disable_irq()
+#define EXIT_CRITICAL_SECTION() __set_PRIMASK(__primask)
+
+
+
 typedef enum {
 	FUTURE_WAITING = 0,
 	FUTURE_SUCCESS = 1,
@@ -29,6 +35,7 @@ typedef struct {
  * Does not yet implement format functionality.
  */
 int dbg_printf(char* str);
+void run_printer();
 
 Future init_future();
 void future_await(Future* future);
