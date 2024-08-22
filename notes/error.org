@@ -1,0 +1,27 @@
+* Error Budget
++ Best possible accuracy because of time base (32 MHz): +-9.375m.
++ Error per diverging timer tick: 9.375m.
++ => PLL could be used to obtain 48 MHz (maximum clock speed for timer) from HSE
+** Maybe use external clock source with higher frequency
+
+* Calibration procedure
+** Reset device
++ is startup time of STM32WL55 fixed?
+  - no => wait on calibration trigger
+** Start TIM2 after fixed amount of clock cycles
++ TIM2 counts every clock tick from HSE (clocked at 32MHz)
+  => minimum time step: 1s / (32 * 10^6) = 31.25ns
+
+
+* Distance measurement via RSSI
+** Path-Loss-Model
++ RSSI = K - 10y log_10(d/d_0)
++ measure d_0 at 1m
++ multiple measurements to calculate path loss exponent
+  + https://www.rs-online.com/designspark/lora-location-tracker-rssi
+  + multiple rssi measurements at different distances
+  + https://www.rs-online.com/designspark/lora-location-tracker-part-6-calculation
+    + distance = 10^((RSSI - RSSI_0)/(20a))
+    + a and RSSI_0 a determined by measurement
+** Multilateration
++ solve for x,y,z of LoRa-Tag

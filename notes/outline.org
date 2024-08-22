@@ -1,0 +1,52 @@
+#+TITLE: Outline
+* Implementation and Evaluation of mobile RSSI-based LoRa Localization
+
+* Content
++ LoRa RSSI
++ Localization estimation
++ Power consumption
+* Methods
++ Evaluation
+
+ 
+https://www.leipzig.de/stadtplan
+
+https://www.leipzig.de/bauen-und-wohnen/bauen/geodaten-und-karten/geobasisdaten
+
+* Introduction
+** LoRa use cases
+* State of the Art
+https://www.mdpi.com/2076-3417/13/17/9501
+
+https://link.springer.com/book/10.1007/978-3-031-48008-9
+
+https://ietresearch.onlinelibrary.wiley.com/doi/full/10.1049/wss2.12063
+*** Using LoRa for industrial wireless networks
++ calculation of maximum possible simultaneous connections in LoRaWAN
+*** Evaluation of LoRa Technology for Vehicle and Asset Tracking in Smart Harbors
++ transmission of GNSS data via LoRa
++ deployment test in harbor with 1000 nodes in 2500m area around 1 gateway
++ LoRa as durable wireless communication system - harbor is a harsh environment for
+  RF wireless communication due to it being composed of mostly metal structures
+
+*** LoRa-based Localization System for Emergency Services in GPS-less Environments
++ LoRa Localization as alternative to GPS in extreme environments (underwater, underground) for emergency services
+
+* Principals
+** Distance estimation
+** Location estimation
+** Power consumption
+** Accuracy
+** Public adoption
+*** Introducing a survey methodology for assessing LoRaWAN coverage in Smart Campus scenarios
++ LoRaWAN as distributed Mesh? network within a smart campus
++ new methodology for testing coverage
++ demonstrates effectiveness of introduced methodology in a real smart campus
+* Implementation
+* Evaluation
+* Future works
+
+* Bibliography
+* Appendix
+** Source code
+** Measurement data

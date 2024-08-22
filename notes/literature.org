@@ -51,3 +51,4 @@
 
 * Enhanced Indoor Navigation System with Beacons and Kalman Filters, 2018, Mackey & Spachos
 + BLE with Kalman-Filter for better accuracy
+

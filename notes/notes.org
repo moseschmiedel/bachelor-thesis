@@ -1,0 +1,28 @@
+* Todos
+** Experiments
+*** TODO Measure RSSI at different distances
+*** TODO Implement testing system for position accuracy measurement
++ power supply
++ monitor position estimates
+*** TODO Measure position estimates
++ record control position with GPS (mobile phone)
++ record position estimates
+*** TODO Measure power consumption of Tag and Beacon simultaneously
+** Writing
+*** TODO write Introduction
+*** TODO write Public adoption
+
+* Distance measurement
+** Via RSSI
+*** Antenna gain
+*** Path-Loss-Model
++ RSSI = K - 10y log_10(d/d_0)
++ measure d_0 at 1m
++ multiple measurements to calculate path loss exponent
+  + https://www.rs-online.com/designspark/lora-location-tracker-rssi
+  + multiple rssi measurements at different distances
+  + https://www.rs-online.com/designspark/lora-location-tracker-part-6-calculation
+    + distance = 10^((RSSI - RSSI_0)/(20a))
+    + a and RSSI_0 a determined by measurement
+*** Multilateration
++ solve for x,y,z of LoRa-Tag
