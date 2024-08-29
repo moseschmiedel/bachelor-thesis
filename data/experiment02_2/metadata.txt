@@ -1,0 +1,7 @@
+Receiver: Tag
+Sender: Beacon B
+DistanceStart: 10cm
+DistanceEnd: 50m
+DistanceInterval: 5m
+Date: 2024-08-28 13:25
+FirmwareVersion: 1.00

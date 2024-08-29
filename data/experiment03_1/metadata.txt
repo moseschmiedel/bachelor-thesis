@@ -1,0 +1,8 @@
+Receiver: Tag
+Sender: Beacon B
+DistanceStart: 2m
+DistanceEnd: 2m
+DistanceInterval: 0m
+AlignmentStep: 90deg
+Date: 2024-08-28 13:48
+FirmwareVersion: 1.00
