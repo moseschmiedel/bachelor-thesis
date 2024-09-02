@@ -117,7 +117,18 @@ fn main() -> Result<(), Error> {
 
     data.align_chunks();
 
-    println!("{}", data.tail(Some(10)));
+    let mut df_agg = data
+        .lazy()
+        .group_by(["distance_m"])
+        .agg([col("rssi_dbm").mean()])
+        .sort(
+            ["distance_m"],
+            SortMultipleOptions::new().with_order_descending(false),
+        )
+        .collect()?;
+    df_agg.set_column_names(&["distance_m", "avg_rssi_dbm"])?;
+
+    println!("{}", df_agg);
 
     return Ok(());
 }
