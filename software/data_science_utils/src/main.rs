@@ -1,4 +1,5 @@
 use clap::Parser;
+use linreg::linear_regression;
 use polars::prelude::*;
 use polars_arrow::array::Utf8ViewArray;
 use std::{ffi::OsString, fs, io, path::Path};
@@ -129,6 +130,27 @@ fn main() -> Result<(), Error> {
     df_agg.set_column_names(&["distance_m", "avg_rssi_dbm"])?;
 
     println!("{}", df_agg);
+
+    let xs = df_agg["distance_m"]
+        .iter()
+        .map(|d| match d {
+            AnyValue::Float64(value) => value.log10(),
+            _ => 0.0,
+        })
+        .collect::<Vec<f64>>();
+    let ys = df_agg["avg_rssi_dbm"]
+        .f64()?
+        .to_vec()
+        .into_iter()
+        .collect::<Option<Vec<f64>>>()
+        .unwrap();
+
+    match linear_regression::<f64, f64, f64>(&xs, &ys) {
+        Ok((slope, intercept)) => {
+            println!("Calculated RSSI model: {slope} * log(distance) + {intercept}")
+        }
+        Err(error) => println!("Error: {error}"),
+    };
 
     return Ok(());
 }
