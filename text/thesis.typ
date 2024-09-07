@@ -16,10 +16,17 @@
     }
 )
 
-#show heading.where(level: 1): it => smallcaps(it)
+#show heading.where(level: 1): it => [
+    #pagebreak()
+    #smallcaps(it)
+]
 #show heading.where(level: 2): it => emph(text(weight: 400, it))
 
 #set document(title: "Implementation and Evaluation of mobile RSSI-based LoRa Localization", author: "Mose Schmiedel")
+
+#set page("a4", footer: context [
+    #align(right)[#counter(page).display("1")]
+])
 
 #include "00_title.typ"
 #include "01_introduction.typ"
@@ -29,6 +36,7 @@
 #include "05_evaluation.typ"
 #include "06_future-works.typ"
 
+#outline(title: "Figures", target: figure.where(kind: image))
 #bibliography("lora-ba-thesis.bib", style: "ieee")
 
 #include "07_appendix.typ"
