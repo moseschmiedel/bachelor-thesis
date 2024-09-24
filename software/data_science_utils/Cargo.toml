@@ -10,5 +10,6 @@ clap = { version = "4.5.16", features = ["derive"] }
 linreg = "0.2.0"
 ndarray = "0.16.1"
 ndarray-linalg = "0.16.0"
+plotters = "0.3.7"
 polars = { version = "0.42.0", features = ["lazy", "csv", "dtype-categorical", "fmt"] }
 polars-arrow = "0.42.0"
