@@ -22,6 +22,18 @@ pub struct DistanceArgs {
     /// Minimum distance to include in the RSSI model
     #[arg(short, long)]
     pub min_distance: Option<f64>,
+    #[command(flatten)]
+    pub graph_args: GraphArgs,
+}
+
+#[derive(Args, Clone)]
+pub struct GraphArgs {
+    /// Serif font to use when drawing graph
+    #[arg(long = "serif-font")]
+    pub serif_font: Option<String>,
+    /// Sans-serif font to use when drawing graph
+    #[arg(long = "sans-font")]
+    pub sans_font: Option<String>,
 }
 
 #[derive(Args, Clone)]
