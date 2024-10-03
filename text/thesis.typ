@@ -73,7 +73,7 @@
 #let supervisor = "Marian Ulbricht, M.Eng."
 #let organization = "HTWK Leipzig"
 #let date_raw = datetime(day: 16, month: 10, year: 2024)
-#let date = "Octobre 2024, Leipzig"
+#let date = "October 2024, Leipzig"
 #let title = "Implementation and Evaluation of mobile RSSI-based LoRa Localization"
 #let subtitle = "Bachelor Thesis"
 #let keywords = ("LoRa", "RSSI", "localization", "distance estimation")
