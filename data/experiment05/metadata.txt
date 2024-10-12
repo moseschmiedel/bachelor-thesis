@@ -1,0 +1,5 @@
+Receiver: Endnode
+Sender: Anchor A, B, C
+Date: 2024-10-12 18:32
+FirmwareVersion: 2.00
+Geolocation: 2
