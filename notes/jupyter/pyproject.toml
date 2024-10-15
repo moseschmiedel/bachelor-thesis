@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "jupyter"
+version = "0.1.0"
+description = "Jupyter notebook for calculations for my Bachelor thesis."
+authors = ["Mose Schmiedel <mose@schmiednet.de>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
