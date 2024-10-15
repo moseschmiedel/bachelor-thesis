@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="207.43565mm"
+   height="165.98157mm"
+   viewBox="0 0 207.43566 165.98157"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="system-overview.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.1770318"
+     inkscape:cx="332.79257"
+     inkscape:cy="124.25175"
+     inkscape:window-width="1914"
+     inkscape:window-height="1047"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1528" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-32.264314,-46.11091)">
+    <g
+       id="g1548"
+       transform="matrix(0.79130583,0,0,0.79130583,18.815142,47.303545)">
+      <g
+         id="g1528"
+         transform="matrix(1.3676111,0,0,1.3676111,-78.180686,-6.5444952)">
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1523"
+           sodipodi:type="arc"
+           sodipodi:cx="178.33167"
+           sodipodi:cy="37.500881"
+           sodipodi:rx="8.5943403"
+           sodipodi:ry="8.5943403"
+           sodipodi:start="3.2307926"
+           sodipodi:end="6.1547745"
+           sodipodi:arc-type="arc"
+           d="m 169.77149,36.735283 a 8.5943403,8.5943403 0 0 1 8.39169,-7.82709 8.5943403,8.5943403 0 0 1 8.69207,7.492112"
+           sodipodi:open="true" />
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1521"
+           sodipodi:type="arc"
+           sodipodi:cx="178.38486"
+           sodipodi:cy="37.500881"
+           sodipodi:rx="6.6876345"
+           sodipodi:ry="6.1416125"
+           sodipodi:start="3.2472263"
+           sodipodi:end="6.169759"
+           sodipodi:arc-type="arc"
+           d="m 171.7345,36.853326 a 6.6876345,6.1416125 0 0 1 6.6243,-5.494011 6.6876345,6.1416125 0 0 1 6.67072,5.446439"
+           sodipodi:open="true" />
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1519"
+           sodipodi:type="arc"
+           sodipodi:cx="178.33167"
+           sodipodi:cy="37.500881"
+           sodipodi:rx="4.5821681"
+           sodipodi:ry="3.9274228"
+           sodipodi:start="3.24048"
+           sodipodi:end="6.1620646"
+           sodipodi:arc-type="arc"
+           d="m 173.77188,37.113141 a 4.5821681,3.9274228 0 0 1 4.50885,-3.53944 4.5821681,3.9274228 0 0 1 4.59953,3.45265"
+           sodipodi:open="true" />
+      </g>
+      <rect
+         style="fill:none;fill-opacity:0.423529;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+         id="rect398"
+         width="8.0375347"
+         height="28.445797"
+         x="161.68903"
+         y="42.105839"
+         ry="4.5711732"
+         rx="4.0187674" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+         id="rect234"
+         width="61.086975"
+         height="68.072845"
+         x="118.86749"
+         y="66.921844"
+         ry="6.7202301" />
+      <g
+         id="g1381"
+         transform="translate(1.5258789e-5,-24.751372)">
+        <rect
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="rect1266"
+           width="47.532135"
+           height="29.28636"
+           x="125.6449"
+           y="124.68539"
+           ry="2.1753542" />
+        <g
+           id="g1264">
+          <g
+             id="g1255"
+             transform="translate(-1.1401529e-5,7.2578573)">
+            <rect
+               style="fill:none;fill-opacity:0.423529;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+               id="rect236"
+               width="41.808258"
+               height="11.954777"
+               x="128.50685"
+               y="119.98365"
+               ry="2.1753542" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+               x="140.51891"
+               y="92.934532"
+               id="text1008"
+               transform="translate(-5.2690605,35.432454)"><tspan
+                 x="140.51891"
+                 y="92.934532"
+                 id="tspan2392"><tspan
+                   style="fill:#000000"
+                   id="tspan2390">Firmware</tspan></tspan></text>
+          </g>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linejoin:round;stroke-dasharray:none"
+             x="140.51891"
+             y="92.934532"
+             id="text1008-9"
+             transform="translate(-5.7347371,57.576956)"><tspan
+               x="140.51891"
+               y="92.934532"
+               id="tspan2394">Hardware</tspan></text>
+        </g>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.365;stroke-linejoin:round;stroke-dasharray:none"
+         x="140.51891"
+         y="92.934532"
+         id="text1008-9-8"
+         transform="translate(-10.96783,-8.6840003)"><tspan
+           x="140.51891"
+           y="92.934532"
+           id="tspan2396">End node</tspan></text>
+    </g>
+    <g
+       id="g1548-1"
+       transform="matrix(0.69533696,0,0,0.69533696,114.47899,21.203168)">
+      <rect
+         style="fill:none;fill-opacity:0.423529;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+         id="rect398-0"
+         width="8.0375347"
+         height="28.445797"
+         x="128.50684"
+         y="42.582523"
+         ry="4.5711732"
+         rx="4.0187674" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+         id="rect234-6"
+         width="61.086975"
+         height="67.204842"
+         x="118.86749"
+         y="66.921844"
+         ry="6.7202301" />
+      <g
+         id="g1381-3"
+         transform="translate(1.5258789e-5,-24.751372)">
+        <rect
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="rect1266-2"
+           width="47.532135"
+           height="29.28636"
+           x="125.6449"
+           y="124.68539"
+           ry="2.1753542" />
+        <g
+           id="g1264-0">
+          <g
+             id="g1255-6"
+             transform="translate(-1.1401529e-5,7.2578573)">
+            <rect
+               style="fill:none;fill-opacity:0.423529;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+               id="rect236-1"
+               width="41.808258"
+               height="11.954777"
+               x="128.50685"
+               y="119.98365"
+               ry="2.1753542" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+               x="140.51891"
+               y="92.934532"
+               id="text1008-5"
+               transform="translate(-5.2690605,35.432454)"><tspan
+                 x="140.51891"
+                 y="92.934532"
+                 id="tspan2400"><tspan
+                   style="fill:#000000"
+                   id="tspan2398">Firmware</tspan></tspan></text>
+          </g>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linejoin:round;stroke-dasharray:none"
+             x="140.51891"
+             y="92.934532"
+             id="text1008-9-5"
+             transform="translate(-5.7347371,57.576956)"><tspan
+               x="140.51891"
+               y="92.934532"
+               id="tspan2402">Hardware</tspan></text>
+        </g>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.365;stroke-linejoin:round;stroke-dasharray:none"
+         x="140.51891"
+         y="92.934532"
+         id="text1008-9-8-4"
+         transform="translate(-16.411117,-5.8092192)"><tspan
+           x="140.51891"
+           y="92.934532"
+           id="tspan2404">Anchor node</tspan></text>
+      <g
+         id="g1528-7"
+         transform="rotate(-90,157.29175,65.587859)">
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1523-6"
+           sodipodi:type="arc"
+           sodipodi:cx="178.33167"
+           sodipodi:cy="38.525768"
+           sodipodi:rx="8.5943403"
+           sodipodi:ry="8.5943403"
+           sodipodi:start="4.712389"
+           sodipodi:end="6.2819656"
+           sodipodi:arc-type="arc"
+           d="m 178.33167,29.931428 a 8.5943403,8.5943403 0 0 1 8.59433,8.583858"
+           sodipodi:open="true" />
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1521-5"
+           sodipodi:type="arc"
+           sodipodi:cx="178.38486"
+           sodipodi:cy="38.525768"
+           sodipodi:rx="6.1416125"
+           sodipodi:ry="6.1416125"
+           sodipodi:start="4.712389"
+           sodipodi:end="0.0045464706"
+           sodipodi:arc-type="arc"
+           d="m 178.38486,32.384156 a 6.1416125,6.1416125 0 0 1 4.35263,1.80872 6.1416125,6.1416125 0 0 1 1.78892,4.360815"
+           sodipodi:open="true" />
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1519-6"
+           sodipodi:type="arc"
+           sodipodi:cx="178.33167"
+           sodipodi:cy="38.525768"
+           sodipodi:rx="3.9274228"
+           sodipodi:ry="3.9274228"
+           sodipodi:start="4.7117713"
+           sodipodi:end="6.2721455"
+           sodipodi:arc-type="arc"
+           d="m 178.32924,34.598346 a 3.9274228,3.9274228 0 0 1 3.92961,3.884065"
+           sodipodi:open="true" />
+      </g>
+    </g>
+    <g
+       id="g1548-1-4"
+       transform="matrix(0.72998253,0,0,0.72998253,-54.410309,62.234393)">
+      <rect
+         style="fill:none;fill-opacity:0.423529;stroke:#000000;stroke-width:0.28681;stroke-linejoin:round"
+         id="rect398-04"
+         width="8.7127399"
+         height="30.835428"
+         x="158.71242"
+         y="40.610313"
+         ry="4.9551816"
+         rx="4.35637" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+         id="rect234-6-2"
+         width="61.086975"
+         height="67.204842"
+         x="118.86749"
+         y="66.921844"
+         ry="6.7202301" />
+      <g
+         id="g1528-8"
+         transform="matrix(1.0840065,0,0,1.0840065,-27.627658,0.45082826)">
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1523-7"
+           sodipodi:type="arc"
+           sodipodi:cx="178.33167"
+           sodipodi:cy="38.525768"
+           sodipodi:rx="8.5943403"
+           sodipodi:ry="8.5943403"
+           sodipodi:start="4.712389"
+           sodipodi:end="6.2819656"
+           sodipodi:arc-type="arc"
+           d="m 178.33167,29.931428 a 8.5943403,8.5943403 0 0 1 8.59433,8.583858"
+           sodipodi:open="true" />
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1521-1"
+           sodipodi:type="arc"
+           sodipodi:cx="178.38486"
+           sodipodi:cy="38.525768"
+           sodipodi:rx="6.1416125"
+           sodipodi:ry="6.1416125"
+           sodipodi:start="4.712389"
+           sodipodi:end="0.0045464706"
+           sodipodi:arc-type="arc"
+           d="m 178.38486,32.384156 a 6.1416125,6.1416125 0 0 1 4.35263,1.80872 6.1416125,6.1416125 0 0 1 1.78892,4.360815"
+           sodipodi:open="true" />
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1519-7"
+           sodipodi:type="arc"
+           sodipodi:cx="178.33167"
+           sodipodi:cy="38.525768"
+           sodipodi:rx="3.9274228"
+           sodipodi:ry="3.9274228"
+           sodipodi:start="4.7117713"
+           sodipodi:end="6.2721455"
+           sodipodi:arc-type="arc"
+           d="m 178.32924,34.598346 a 3.9274228,3.9274228 0 0 1 3.92961,3.884065"
+           sodipodi:open="true" />
+      </g>
+      <g
+         id="g1381-3-5"
+         transform="translate(1.5258789e-5,-24.751372)">
+        <rect
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="rect1266-2-4"
+           width="47.532135"
+           height="29.28636"
+           x="125.6449"
+           y="124.68539"
+           ry="2.1753542" />
+        <g
+           id="g1264-0-7">
+          <g
+             id="g1255-6-4"
+             transform="translate(-1.1401529e-5,7.2578573)">
+            <rect
+               style="fill:none;fill-opacity:0.423529;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+               id="rect236-1-4"
+               width="41.808258"
+               height="11.954777"
+               x="128.50685"
+               y="119.98365"
+               ry="2.1753542" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+               x="140.51891"
+               y="92.934532"
+               id="text1008-5-3"
+               transform="translate(-5.2690605,35.432454)"><tspan
+                 x="140.51891"
+                 y="92.934532"
+                 id="tspan2408"><tspan
+                   style="fill:#000000"
+                   id="tspan2406">Firmware</tspan></tspan></text>
+          </g>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linejoin:round;stroke-dasharray:none"
+             x="140.51891"
+             y="92.934532"
+             id="text1008-9-5-0"
+             transform="translate(-5.7347371,57.576956)"><tspan
+               x="140.51891"
+               y="92.934532"
+               id="tspan2410">Hardware</tspan></text>
+        </g>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.365;stroke-linejoin:round;stroke-dasharray:none"
+         x="140.51891"
+         y="92.934532"
+         id="text1008-9-8-4-7"
+         transform="translate(-16.411117,-5.8092192)"><tspan
+           x="140.51891"
+           y="92.934532"
+           id="tspan2412">Anchor node</tspan></text>
+    </g>
+    <g
+       id="g1548-1-43"
+       transform="matrix(0.65711683,0,0,0.65711683,92.0946,123.86865)">
+      <rect
+         style="fill:none;fill-opacity:0.423529;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+         id="rect398-0-1"
+         width="8.0375347"
+         height="28.445797"
+         x="128.50684"
+         y="42.582523"
+         ry="4.5711732"
+         rx="4.0187674" />
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+         id="rect234-6-4"
+         width="61.086975"
+         height="67.204842"
+         x="118.86749"
+         y="66.921844"
+         ry="6.7202301" />
+      <g
+         id="g1381-3-9"
+         transform="translate(1.5258789e-5,-24.751372)">
+        <rect
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="rect1266-2-2"
+           width="47.532135"
+           height="29.28636"
+           x="125.6449"
+           y="124.68539"
+           ry="2.1753542" />
+        <g
+           id="g1264-0-0">
+          <g
+             id="g1255-6-6"
+             transform="translate(-1.1401529e-5,7.2578573)">
+            <rect
+               style="fill:none;fill-opacity:0.423529;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+               id="rect236-1-8"
+               width="41.808258"
+               height="11.954777"
+               x="128.50685"
+               y="119.98365"
+               ry="2.1753542" />
+            <text
+               xml:space="preserve"
+               style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264583;stroke-linejoin:round"
+               x="140.51891"
+               y="92.934532"
+               id="text1008-5-9"
+               transform="translate(-5.2690605,35.432454)"><tspan
+                 x="140.51891"
+                 y="92.934532"
+                 id="tspan2416"><tspan
+                   style="fill:#000000"
+                   id="tspan2414">Firmware</tspan></tspan></text>
+          </g>
+          <text
+             xml:space="preserve"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05556px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.265;stroke-linejoin:round;stroke-dasharray:none"
+             x="140.51891"
+             y="92.934532"
+             id="text1008-9-5-2"
+             transform="translate(-5.7347371,57.576956)"><tspan
+               x="140.51891"
+               y="92.934532"
+               id="tspan2418">Hardware</tspan></text>
+        </g>
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9.87778px;font-family:'Source Sans 3';-inkscape-font-specification:'Source Sans 3, @wght=401';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;font-variation-settings:'wght' 401;white-space:pre;inline-size:86.6096;display:inline;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.365;stroke-linejoin:round;stroke-dasharray:none"
+         x="140.51891"
+         y="92.934532"
+         id="text1008-9-8-4-6"
+         transform="translate(-16.411117,-5.8092192)"><tspan
+           x="140.51891"
+           y="92.934532"
+           id="tspan2420">Anchor node</tspan></text>
+      <g
+         id="g1528-7-6"
+         transform="rotate(-90,157.29175,65.587859)">
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1523-6-4"
+           sodipodi:type="arc"
+           sodipodi:cx="178.33167"
+           sodipodi:cy="38.525768"
+           sodipodi:rx="8.5943403"
+           sodipodi:ry="8.5943403"
+           sodipodi:start="4.712389"
+           sodipodi:end="6.2819656"
+           sodipodi:arc-type="arc"
+           d="m 178.33167,29.931428 a 8.5943403,8.5943403 0 0 1 8.59433,8.583858"
+           sodipodi:open="true" />
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1521-5-9"
+           sodipodi:type="arc"
+           sodipodi:cx="178.38486"
+           sodipodi:cy="38.525768"
+           sodipodi:rx="6.1416125"
+           sodipodi:ry="6.1416125"
+           sodipodi:start="4.712389"
+           sodipodi:end="0.0045464706"
+           sodipodi:arc-type="arc"
+           d="m 178.38486,32.384156 a 6.1416125,6.1416125 0 0 1 4.35263,1.80872 6.1416125,6.1416125 0 0 1 1.78892,4.360815"
+           sodipodi:open="true" />
+        <path
+           style="font-variation-settings:'wght' 401;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.264999;stroke-linejoin:round;stroke-dasharray:none"
+           id="path1519-6-5"
+           sodipodi:type="arc"
+           sodipodi:cx="178.33167"
+           sodipodi:cy="38.525768"
+           sodipodi:rx="3.9274228"
+           sodipodi:ry="3.9274228"
+           sodipodi:start="4.7117713"
+           sodipodi:end="6.2721455"
+           sodipodi:arc-type="arc"
+           d="m 178.32924,34.598346 a 3.9274228,3.9274228 0 0 1 3.92961,3.884065"
+           sodipodi:open="true" />
+      </g>
+    </g>
+  </g>
+</svg>
