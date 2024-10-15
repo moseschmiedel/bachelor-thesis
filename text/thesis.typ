@@ -509,7 +509,6 @@ The implementation of the firmware is based on the _SubGhz_Phy_PingPong_ example
 The following graphic illustrates the individual logical components the firmware is made of.
 
 // TODO insert firmware architecture graphic
-#align(center)[
     #figure(
         caption: "Firmware architecture",
         cetz.canvas({
@@ -593,8 +592,7 @@ The following graphic illustrates the individual logical components the firmware
                 }
             }
         })
-    )
-]
+    ) <firmware_architecture>
 
 The main component of the firmware is the _LoraLocator_ application. It controls all the other components and implements the logic
 that is needed for estimating the position of an End node.
@@ -792,31 +790,81 @@ Radio.Rx(rx_buffer, RX_TIMEOUT_MS);
     ] 
 ]
 
-The code above transmits a payload of 10 bytes via a LoRa packet in lines 1 to 3. Line 4-6 show how the transceiver
-can be configured for receiving the transmitted packet. The reception will fail after the time specified by `RX_TIMEOUT_MS`
-which in this case would be #text_qty(200, "ms"). The transmission and reception should of course be executed by seperate devices
-simultaneously for them to communicate successfully.
+The code above transmits a payload of 10 bytes via a LoRa packet, as demonstrated in lines 1 to 3.
+Lines 4 to 6 show how the transceiver can be configured to receive the transmitted packet.
+Reception will fail after the time specified by `RX_TIMEOUT_MS`
+which in this case would be #text_qty(200, "ms"). Of course, sending and receiving should be done by separate devices
+at the same time for them to communicate successfully.
 
-A more detailed explanation of how LoRa applications can be build with the _SubGHz_Phy_ driver and a documentation of the all
-the methods available can be found in here @noauthor_an5406_2022.
+A more detailed explanation of how to build LoRa applications with the _SubGHz_Phy_ driver and the documentation of the all
+available methods can be found in here @noauthor_an5406_2022.
 
 === Utilities
-To shorten to firmware development some utility modules distributed by STMicroelectronics were used. They
-helped in reducing the amount of boilerplate code, i.e. source code required for basic project setup that has
-little variation between different projects. The 
+Several utility modules distributed by STMicroelectronics were used to simplify the firmware development process.
+They helped reduce the amount of boilerplate code, i.e. source code required for basic project setup that has
+little variation between different projects. @firmware_architecture lists all the utility modules used for the final
+firmware. This section briefly introduces the two most influential modules.
 
-/*
-- Sequencer
-  + runs `Tracking_Process` on demand
-  + go to sleep mode when idle?
-- Timer server
-  + abstraction layer over hardware timer (RTC)
-  + arbitrary amount of timers
-- Trace via UART
-  + abstraction layer over UART
-  + simple printf-like UART printing
-*/
+#v(0.4em)
+The firmware uses the *Sequencer* module to schedule the execution of the `LoraLocator_Process()` function.
+This allows the event handler functions, which are often executed in an interrupt context, to indirectly call the
+core function and leave the interrupt context quickly. The documentation of the Sequencer module can be found here @noauthor_utilitysequencer_nodate.
 
+#figure(caption: "Sequencer task registration")[
+    #sourcecode[
+```c
+UTIL_SEQ_RegTask(
+    (1 << CFG_SEQ_Task_SubGHz_Phy_App_Process),
+    UTIL_SEQ_RFU,
+    LoraLocator_Process);
+```
+    ] 
+]
+#figure(caption: "Helper function to schedule task execution")[
+    #sourcecode[
+```c
+static void QueueLoraLocatorTask() {
+    UTIL_SEQ_SetTask(
+        (1 << CFG_SEQ_Task_SubGHz_Phy_App_Process),
+        CFG_SEQ_Prio_0);
+}
+```
+    ] 
+]
+
+Basic timing functionality is implemented in the _LoraLocator_ application with the *Timer server* module. This module allows
+to create an arbitrary amount of independent timers. A timer generates a timeout event and calls a provided event handler function
+after a fixed amount of time provided upon creation. The time is specified in Milliseconds. Unfortunately no official documentation
+could be found for this module but most important functionality can be understood by directly reading the source code. // TODO permalink to stm32_timer.c
+
+#figure(caption: "Timer creation")[
+    #sourcecode[
+```c
+/* Timer that triggers `LoraLocator_Process` periodically to either transmit a `Ping_t` (end node) or listen for a `Ping_t` (anchor node). */
+static UTIL_TIMER_Object_t interval_timer;
+...
+UTIL_TIMER_Status_t timer_result = UTIL_TIMER_Create(
+        &interval_timer,      // timer object
+        INTERVAL_PERIOD_MS,   // timeout value
+        UTIL_TIMER_PERIODIC,  // timer mode (ONESHOT=run once and stop,
+                              // PERIODIC=run and restart until stopped)
+        &OnIntervalEvent,     // callback function to call when timer elapses
+        NULL);                // argument passed to callback function
+
+if (timer_result != UTIL_TIMER_OK) {
+    // handle timer creation error
+    APP_LOG(TS_ON, VLEVEL_M, "Could not create interval timer.\n\r");
+}
+```
+    ] 
+]
+#figure(caption: "Start timer with specified timeout value")[
+    #sourcecode[
+```c
+UTIL_TIMER_StartWithPeriod(&interval_timer, INTERVAL_PERIOD_MS);
+```
+    ] 
+]
 
 == Distance estimation
 - End node sends ping
