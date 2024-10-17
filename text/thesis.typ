@@ -1,8 +1,8 @@
 #import "@preview/unify:0.6.0": qty
 #import "@preview/cetz:0.2.2"
-#import "@preview/codelst:2.0.1": sourcecode
-#import cetz.plot
+#import "@preview/codelst:2.0.1": sourcecode, code-frame
 #import cetz.draw
+#import cetz.plot
 #import cetz.palette
 
 #let sans_font = "Source Sans 3"
@@ -208,6 +208,7 @@ implemented in all RF receivers. Also, the need of a directed antenna array make
 unattractive for low-cost applications @zare_applications_2021[p.~3].
 
 === Time of Arrival
+// TODO improve citation
 Another localization method presented in the media uses the time of arrival (ToA) of the radio signal.
 The ToA is used to calculate the time of flight (ToF) which is the time the radio signal needs to travel from
 the transmitter to the receiver. From this time and the speed of light, the distance between transmitter and receiver
@@ -230,6 +231,7 @@ requires specialized hardware not found in every receiver circuit. Clock systems
 required to achieve the before mentioned requirements for precision and synchronization of the time measurement.
 
 === Time Difference of Arrival
+// TODO improve citation
 The strict time synchronization of anchor and end node is a requirement which is sometimes very difficult or even impossible to achieve in real world
 implementations. In such circumstances, it could be required that end nodes can be deployed dynamically such that they are not always powered on and not
 physically close to each other. These requirements add much complexity to the time synchronization process. One way to deal with this complexity is to avoid
@@ -289,6 +291,7 @@ the total power consumption of the device can be configured by adjusting the tim
     #figure(
         caption: "Current consumption in Active and Sleep mode",
         cetz.canvas({
+            import cetz.draw: *
             let y_min = 0.0067
             let y_max = 30
             let y_pad = 0.6
@@ -310,13 +313,13 @@ the total power consumption of the device can be configured by adjusting the tim
                         style: (stroke: (paint: black))
                     )
                     plot.annotate({
-                        draw.content((1500, 6), [_Sleep mode_])
-                        draw.content((2150, 35.3), [_Active mode_])
+                        content((1500, 6), [_Sleep mode_])
+                        content((2150, 35.3), [_Active mode_])
 
-                        draw.line((1000, 20), (2000, 20), stroke: (dash: "dashed", thickness: .4pt), mark: (symbol: ">", fill: black), name: "wake-up")
-                        draw.line((3000, 10), (3300, 10), stroke: (dash: "dashed", thickness: .4pt), mark: (symbol: ">", fill: black), name: "active")
-                        draw.content("wake-up.mid", padding: .2, anchor: "south", [$t_"wake-up"$])
-                        draw.content("active.mid", padding: .2, anchor: "south", [$t_"Active"$])
+                        line((1000, 20), (2000, 20), stroke: (dash: "dashed", thickness: .4pt), mark: (symbol: ">", fill: black), name: "wake-up")
+                        line((3000, 10), (3300, 10), stroke: (dash: "dashed", thickness: .4pt), mark: (symbol: ">", fill: black), name: "active")
+                        content("wake-up.mid", padding: .2, anchor: "south", [$t_"wake-up"$])
+                        content("active.mid", padding: .2, anchor: "south", [$t_"Active"$])
                     })
                 }
             )
@@ -398,7 +401,7 @@ continuously improve the RSSI-distance model over time by correlating their GPS 
 model.
 
 In @gotthard_low-cost_2018 Gotthard et al. evaluate RSSI-based LoRa localization as asset tracking system for large used car dealerships. They
-present a novel variant of RSSI-based localization where end nodes only send ping messages between one another. The RSSI acquired from these "pings"
+present a novel variant of RSSI-based localization where end nodes only send "ping" messages between one another. The RSSI acquired from these "pings"
 are transmitted to a central server, where they can be combined to approximate the position of the individual end nodes. Through this mechanism their
 proposed system does not require any anchor devices.
 
@@ -866,29 +869,166 @@ UTIL_TIMER_StartWithPeriod(&interval_timer, INTERVAL_PERIOD_MS);
     ] 
 ]
 
-== Distance estimation
-- End node sends ping
+== Distance estimation and localization
+In order to estimate the position of an end node by trilateration, it is necessary to determine the distances between the end node and 
+at least three anchor nodes. As stated in the thesis title and in preceding chapters, the implemented localization system utilizes
+RSSI measurements to estimate these distances. For this to work the end node periodically transmits LoRa packets of type `Ping_t`.
+
+#v(1em)
+#stack(dir: ltr,
+    spacing: 10pt,
+figure(caption: "`Ping_t` transmission")[
+    #align(center)[
+    #cetz.canvas({
+        import cetz.draw: *
+        scale(50%)
+        let cross = ((x, y), size: 1, width: 4pt, dynamic_scaling: true, name: "") => {
+            let stroke_w = if dynamic_scaling { width * size } else { width }
+            let nice_size_factor = 0.4
+            let half_line_len = size * nice_size_factor
+            group({
+                line((x - half_line_len,y - half_line_len), (x + half_line_len,y + half_line_len), stroke: stroke_w, name: name + "_325deg")
+                line((x - half_line_len,y + half_line_len), (x + half_line_len,y - half_line_len), stroke: stroke_w, name: name + "_45deg")
+            }, name: name)
+        }
+
+        let label = (coord, content, angle: "", padding: (left: 0pt, right: 0pt, top: 0pt, bottom: 0pt, x: 0pt, y: 0pt), name: "") => {
+            if angle != "" {
+                draw.content(coord, angle: angle, padding: padding, box(fill: white, stroke: .4pt, radius: 2pt, inset: 2.5pt, content), name: name)
+            } else {
+                draw.content(coord, padding: padding, box(fill: white, stroke: .4pt, radius: 2pt, inset: 2.5pt, content), name: name)
+            }
+        }
+        cross((0,0), name: "end_node")
+        cross((-3,1), name: "anchor_a")
+        cross((0,2), name: "anchor_b")
+        cross((-1.5,-2), name: "anchor_c")
+
+        let radii = (.8, 1, 1.3, 1.7, 2.2, 2.8, 3.5)
+
+        for r in radii {
+            circle("end_node.center", radius: r, stroke: (dash: "dashed"))
+        }
+
+        line("end_node.east", (4.5, 2.25), stroke: (thickness: 3pt, dash: "dashed"), mark: (end: ">"), name: "ping_line")
+        label(("ping_line.start", 60pt, "ping_line.end"), angle: "ping_line.end", [`Ping_t`], name: "ping_label")
+
+        label("end_node.south-east", padding: (left: 50pt, top: 20pt), [End node], name: "end_node_label")
+        label("anchor_a.north-west", padding: (right: 10pt, bottom: 20pt), [Anchor A], name: "anchor_a_label")
+        label("anchor_b.north-east", padding: (left: 10pt, bottom: 20pt), [Anchor B], name: "anchor_b_label")
+        label("anchor_c.south-west", padding: (top: 20pt), [Anchor C], name: "anchor_c_label")
+
+        hide(bounds: true, {
+            rect((-6,-4.4), (6,4.35))
+        })
+    })
+    ]
+],
+figure(caption: "Packet type `Ping_t`")[
+    #sourcecode(
+        frame: it =>
+            block(width: 260pt,
+                fill: luma(250),
+                stroke: .6pt + luma(200),
+                inset: (x: .45em, y: .65em),
+                radius: 3pt,
+                clip: false,
+                breakable: true,
+                it
+            )
+    )[
 ```c
 typedef struct {
+    // attribute used to discriminate
+    // between packet types
+    PacketType_t packet_type;
+    // ID of the device
+    // sending the `Ping_t`
     uint8_t device_id;
+    // ID of the `Ping_t`, `device_id`
+    // combined with this should be unique
     uint8_t packet_id;
-} EndNodeRequest_t;
+} Ping_t;
 ```
-- Anchor node responds with measured RSSI
+    ]
+]
+)
+#v(1em)
+
+An anchor node receiving a `Ping_t` responds to it by transmitting an `AnchorResponse_t` which includes the RSSI measured by the anchor node
+while receiving the `Ping_t`.
+
+#figure(caption: "Packet type `AnchorResponse_t`")[
+    #sourcecode[
 ```c
+// Note that this packet does not need a `packet_type` discriminator because
+// it is the only type that is 4 bytes long.
 typedef struct {
+    // ID of the anchor sending the `AnchorResponse_t`
     Device_t anchor_id;
+    // ID of the `Ping_t` that triggered this `AnchorResponse_t`
+    uint8_t packet_id;
+    // RSSI of `Ping_t` measured by the anchor node
     int16_t recv_rssi;
 } AnchorResponse_t;
 ```
-- experiment in park
+    ]
+]
 
-== Localization
-- ACK of distance measurement ping
+During the transmission of the `AnchorResponse_t` a collision could occur which hinders the end node from decoding
+the packet. This happens when multiple anchor nodes start transmitting its response almost at the same time. To detect when this is happening
+another packet type `Ack_t` is introduced. An anchor nodes always expects an end node to respond to an successful `AnchorResponse_t` with
+an `Ack_t`. If the anchor node does not receive this `Ack_t` in a configurable amount of time it retries sending the `AnchorResponse_t`.
+The maximum of retries can also be configured via the macro `MAX_ANCHOR_RESPONSE_RETRIES`, which defaults to 3. When this number of
+retries is reached the anchor node gives up and goes to sleep until it receives the next `Ping_t`.
 
+#figure(caption: "Packet type `Ack_t`")[
+    #sourcecode[
+```c
+typedef struct {
+    // attribute used to discriminate between packet types
+    PacketType_t packet_type;
+    // ID of the anchor this `Ack_t` is addressed to
+    Device_t receiver_id;
+    // ID of the `Ping_t` that triggered the communication
+    uint8_t packet_id;
+} Ack_t;
+```
+    ]
+]
+
+The end uses the decoded RSSI value `recv_rssi` from an successful `AnchorResponse_t` to calculate the distance between
+itself and the anchor node with a path-loss model. The chosen path-loss model is the log-normal model which is explained in more detail during the
+evaluation of the distance estimation in @distance_evaluation. The estimated distances can then be combined to calculate a position relative
+to the positions of the anchor nodes by employing the trilateration algorithm or its generalization the multilateration algorithm. These
+algorithms are explained in @multilateration. To obtain a absolute position the relative position can be added to the absolute position of an
+anchor node.
+
+#v(.4em)
+The rest of this section demonstrates the architectural design decisions of the localization system
+by highlighting some of the key features of the chosen implementation.
+
+A significant feature of this localization system is the amount of control the end node can exert. Because the whole system 
+relies on the periodic `Ping_t` packets of the end node, it can effectively regulate the frequency with which measurements are taken.
+This frequency is referred to as tracking rate. This equips the end node with a mechanism to increase or reduce the localization
+precision on demand, which is useful in a situation where the velocity of the end node changes. In this scenario the end node could
+increase the tracking rate while traveling at a high velocity and subsequently reduce the tracking rate, thereby lowering power consumption,
+when traveling at a low velocity.
+
+Another benefit of the end node transmitting the `Ping_t` packets, is that multiple anchor nodes can receive
+the same `Ping_t`. This mitigates the impact of variations in the transmitter circuit or other undesired
+environmental influences on the localization process.
+
+The main drawback of this approach is the amount of transmitted packets. In comparison to the distance estimation approach implemented by
+Bluetooth Low Energy beacons @faragher_location_2015 @qamaz_experimental_2022, this implementation needs twice as much packets for a single
+localization cycle. This is because with the BLE approach the anchor nodes periodically send short packets which are received by the end node
+and are used to estimate the distances between itself and the anchor nodes without the need for reponse to the ping message. 
+
+Despite this drawback, the benefits would enable some interesting advantages over existing solutions. For this reason this localization
+method was chosen for the evaluated system.
 
 = Evaluation
-== Distance estimation
+== Distance estimation <distance_evaluation>
 - log-distance model must be fitted
     - RSSI measured at different distances
     - multiple measurements per distance (ca. 80) #sym.arrow.r calculate average RSSI
