@@ -1,6 +1,7 @@
 #import "@preview/unify:0.6.0": qty
 #import "@preview/cetz:0.2.2"
 #import "@preview/codelst:2.0.1": sourcecode, code-frame
+#import "@preview/zero:0.2.0": num, set-round
 #import cetz.draw
 #import cetz.plot
 #import cetz.palette
@@ -1028,36 +1029,116 @@ Despite this drawback, the benefits would enable some interesting advantages ove
 method was chosen for the evaluated system.
 
 = Evaluation
+In this chapter two experiments, conducted for evaluating the performance of the implemented localization system, are presented and
+the resulting data is discussed.
+
 == Distance estimation <distance_evaluation>
-- log-distance model must be fitted
-    - RSSI measured at different distances
-    - multiple measurements per distance (ca. 80) #sym.arrow.r calculate average RSSI
-    - 
+#let dist_agg = {
+    csv("data/distance_aggregated_error.csv", row-type: dictionary)
+       .map(row => (experiment: row.experiment,
+           mean_error_m: float(row.mean_error_m),
+           max_error_m: float(row.max_error_m),
+           min_error_m: float(row.min_error_m),
+           slope: float(row.slope),
+           intercept: float(row.intercept),
+       ))
+}
+#let dist_best_exp = {
+    csv("data/distance_best_exp.csv", row-type: dictionary)
+       .map(row => (distance_m: float(row.distance_m),
+           recv_rssi_dbm: float(row.recv_rssi_dbm),
+           experiment: row.experiment,
+           estimated_distance_m: float(row.estimated_distance_m),
+           error_dist_m: float(row.error_dist_m),
+           mean_error_m: float(row.mean_error_m))
+       )
+}
+
+The distance estimation was evaluated with two devices, an anchor and an end node. As previously described, the end node periodically
+sent `Ping_t` packets which the anchor node responded with `AnchorResponse_t` packets which included the RSSI values it measured.
+These measurements were taken at different distances. At each distance multiple measurements were performed so that the average RSSI
+value per distance can be calculated to reduce the impact of RSSI variations.
 
 #figure(
-    caption: "Experiments for distance estimation evaluation",
-    table(
-        columns: (auto, 1fr, auto),
-        inset: 10pt,
-        align: horizon,
-        table.header(
-            [*Nr*], [*Description*], [*avg. Error*],
-        ),
-        [\#01-1], [Beschte], [#text_qty(2, "m")],
-        [\#01-2], [Beschte], [#text_qty(2, "m")],
-        [\#02-1], [Beschte], [#text_qty(2, "m")],
-        [\#02-2], [Beschte], [#text_qty(2, "m")]
+    caption: "Distance estimation setup at multiple distances",
+    stack(
+        dir: ltr,
+        spacing: 7.5%,
+        image("assets/dist_exp_long.jpg", width: 45%),
+        image("assets/dist_exp_short.jpg", width: 45%),
     )
 )
 
+/*
+ * 1 methodology
+    - RSSI measured at different distances
+    - multiple measurements per distance (ca. 80) #sym.arrow.r
+ * 2 explanation of data analysis
+    - calculate average RSSI
+    - log-distance model must be fitted
+ * 3 presentation of all results
+ */
+
+=== Data analysis
+
+$ "RSSI"(d) = 10 dot n dot log_10 (d/d_0) + P_0 $
+
 #figure(
-    image("assets/distance_experiment02_2.svg", width: 80%),
-    caption: "Experiment #02-2 distance estimation"
+    caption: "Distance estimation visualization of experiment with lowest error",
+    image("assets/best_exp_error.svg", width: 80%)
+)
+
+=== Results
+#figure(
+    caption: "Experiments for distance estimation evaluation",
+    {
+        let display_log_normal = (slope, intercept) => {
+            set-round(mode: "places", precision: 4)
+            slope = num(slope / 10)
+            if float(intercept) < 0 {
+                intercept = text_qty(num(-(float(intercept))), "dBm")
+                $"RSSI"(d) =  slope dot 10 dot log_10 (d/qty("1", "m")) - intercept$
+            } else {
+                $"RSSI"(d) = slope dot 10 dot log_10 (d/qty("1", "m")) + intercept$
+            }
+        }
+        let display_error = (error) => {
+            set-round(mode: "places", precision: 4)
+            let disperr = num(error)
+            if float(error) < 0 {
+            } else {
+                $plus disperr$
+            }
+        }
+        let results = dist_agg.map(row => (
+            row.experiment,
+            display_log_normal(row.slope, row.intercept),
+            num(row.mean_error_m),
+            display_error(if calc.abs(row.max_error_m) > calc.abs(row.min_error_m) { row.max_error_m } else { row.min_error_m })
+        ))
+        table(
+            columns: (auto, 1fr, auto, auto),
+            inset: (
+                x: 2pt,
+                y: 7pt,
+            ),
+            align: horizon,
+            table.header(
+                [*ID*], [*Log-Normal model*], [*#sym.sigma\(error) [m]*], [*max(error) [m]*]
+            ),
+            ..results.flatten()
+        )
+    }
 )
 
 == Localization
-- define Anchor A as (0,0)
-- measure distances between Anchors and calculates cartesian coordinates with haversine formula
+/*
+ * 1 methodology
+    - define Anchor A as (0,0)
+ * 2 explanation of data analysis
+    - measure distances between Anchors and calculates cartesian coordinates with haversine formula
+ * 3 presentation of all results
+ */
 
 = Future Works
 
