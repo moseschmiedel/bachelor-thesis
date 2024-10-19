@@ -1,0 +1,186 @@
+1004s060:, TX, Ping, 1, 236,,
+1004s093:, RX, AnchorResponse, A, 236, -63
+1004s125:, TX, Ack, A, 236,,
+1005s060:, TX, Ping, 1, 237,,
+1005s093:, RX, AnchorResponse, A, 237, -61
+1005s125:, TX, Ack, A, 237,,
+1006s060:, TX, Ping, 1, 238,,
+1006s093:, RX, AnchorResponse, A, 238, -62
+1006s125:, TX, Ack, A, 238,,
+1007s060:, TX, Ping, 1, 239,,
+1007s093:, RX, AnchorResponse, A, 239, -63
+1007s125:, TX, Ack, A, 239,,
+1008s060:, TX, Ping, 1, 240,,
+1008s093:, RX, AnchorResponse, A, 240, -63
+1008s125:, TX, Ack, A, 240,,
+1009s060:, TX, Ping, 1, 241,,
+1009s093:, RX, AnchorResponse, A, 241, -62
+1009s125:, TX, Ack, A, 241,,
+1010s060:, TX, Ping, 1, 242,,
+1010s093:, RX, AnchorResponse, A, 242, -63
+1010s125:, TX, Ack, A, 242,,
+1011s060:, TX, Ping, 1, 243,,
+1011s093:, RX, AnchorResponse, A, 243, -63
+1011s125:, TX, Ack, A, 243,,
+1012s060:, TX, Ping, 1, 244,,
+1012s093:, RX, AnchorResponse, A, 244, -63
+1012s125:, TX, Ack, A, 244,,
+1013s060:, TX, Ping, 1, 245,,
+1013s093:, RX, AnchorResponse, A, 245, -63
+1013s125:, TX, Ack, A, 245,,
+1014s060:, TX, Ping, 1, 246,,
+1014s093:, RX, AnchorResponse, A, 246, -62
+1014s125:, TX, Ack, A, 246,,
+1015s060:, TX, Ping, 1, 247,,
+1015s093:, RX, AnchorResponse, A, 247, -63
+1015s125:, TX, Ack, A, 247,,
+1016s060:, TX, Ping, 1, 248,,
+1016s093:, RX, AnchorResponse, A, 248, -62
+1016s125:, TX, Ack, A, 248,,
+1017s060:, TX, Ping, 1, 249,,
+1017s093:, RX, AnchorResponse, A, 249, -62
+1017s125:, TX, Ack, A, 249,,
+1018s060:, TX, Ping, 1, 250,,
+1018s093:, RX, AnchorResponse, A, 250, -62
+1018s125:, TX, Ack, A, 250,,
+1019s060:, TX, Ping, 1, 251,,
+1019s093:, RX, AnchorResponse, A, 251, -63
+1019s125:, TX, Ack, A, 251,,
+1020s060:, TX, Ping, 1, 252,,
+1020s093:, RX, AnchorResponse, A, 252, -63
+1020s125:, TX, Ack, A, 252,,
+1021s060:, TX, Ping, 1, 253,,
+1021s093:, RX, AnchorResponse, A, 253, -62
+1021s125:, TX, Ack, A, 253,,
+1022s060:, TX, Ping, 1, 254,,
+1022s093:, RX, AnchorResponse, A, 254, -63
+1022s125:, TX, Ack, A, 254,,
+1023s060:, TX, Ping, 1, 255,,
+1023s093:, RX, AnchorResponse, A, 255, -63
+1023s125:, TX, Ack, A, 255,,
+1024s060:, TX, Ping, 1, 0,,
+1024s093:, RX, AnchorResponse, A, 0, -63
+1024s125:, TX, Ack, A, 0,,
+1025s060:, TX, Ping, 1, 1,,
+1025s093:, RX, AnchorResponse, A, 1, -63
+1025s125:, TX, Ack, A, 1,,
+1026s060:, TX, Ping, 1, 2,,
+1026s093:, RX, AnchorResponse, A, 2, -63
+1026s125:, TX, Ack, A, 2,,
+1027s060:, TX, Ping, 1, 3,,
+1027s093:, RX, AnchorResponse, A, 3, -63
+1027s125:, TX, Ack, A, 3,,
+1028s060:, TX, Ping, 1, 4,,
+1028s093:, RX, AnchorResponse, A, 4, -63
+1028s125:, TX, Ack, A, 4,,
+1029s060:, TX, Ping, 1, 5,,
+1029s093:, RX, AnchorResponse, A, 5, -63
+1029s125:, TX, Ack, A, 5,,
+1030s060:, TX, Ping, 1, 6,,
+1030s093:, RX, AnchorResponse, A, 6, -63
+1030s125:, TX, Ack, A, 6,,
+1031s060:, TX, Ping, 1, 7,,
+1031s093:, RX, AnchorResponse, A, 7, -63
+1031s125:, TX, Ack, A, 7,,
+1032s060:, TX, Ping, 1, 8,,
+1032s093:, RX, AnchorResponse, A, 8, -63
+1032s125:, TX, Ack, A, 8,,
+1033s060:, TX, Ping, 1, 9,,
+1033s093:, RX, AnchorResponse, A, 9, -63
+1033s125:, TX, Ack, A, 9,,
+1034s060:, TX, Ping, 1, 10,,
+1034s093:, RX, AnchorResponse, A, 10, -63
+1034s125:, TX, Ack, A, 10,,
+1035s060:, TX, Ping, 1, 11,,
+1035s093:, RX, AnchorResponse, A, 11, -63
+1035s125:, TX, Ack, A, 11,,
+1036s060:, TX, Ping, 1, 12,,
+1036s093:, RX, AnchorResponse, A, 12, -63
+1036s125:, TX, Ack, A, 12,,
+1037s060:, TX, Ping, 1, 13,,
+1037s093:, RX, AnchorResponse, A, 13, -63
+1037s125:, TX, Ack, A, 13,,
+1038s060:, TX, Ping, 1, 14,,
+1038s093:, RX, AnchorResponse, A, 14, -63
+1038s125:, TX, Ack, A, 14,,
+1039s060:, TX, Ping, 1, 15,,
+1039s093:, RX, AnchorResponse, A, 15, -63
+1039s125:, TX, Ack, A, 15,,
+1040s060:, TX, Ping, 1, 16,,
+1040s093:, RX, AnchorResponse, A, 16, -63
+1040s125:, TX, Ack, A, 16,,
+1041s060:, TX, Ping, 1, 17,,
+1041s093:, RX, AnchorResponse, A, 17, -62
+1041s125:, TX, Ack, A, 17,,
+1042s060:, TX, Ping, 1, 18,,
+1042s093:, RX, AnchorResponse, A, 18, -62
+1042s125:, TX, Ack, A, 18,,
+1043s060:, TX, Ping, 1, 19,,
+1043s093:, RX, AnchorResponse, A, 19, -62
+1043s125:, TX, Ack, A, 19,,
+1044s060:, TX, Ping, 1, 20,,
+1044s093:, RX, AnchorResponse, A, 20, -62
+1044s125:, TX, Ack, A, 20,,
+1045s060:, TX, Ping, 1, 21,,
+1045s093:, RX, AnchorResponse, A, 21, -63
+1045s125:, TX, Ack, A, 21,,
+1046s060:, TX, Ping, 1, 22,,
+1046s093:, RX, AnchorResponse, A, 22, -63
+1046s125:, TX, Ack, A, 22,,
+1047s060:, TX, Ping, 1, 23,,
+1047s093:, RX, AnchorResponse, A, 23, -64
+1047s125:, TX, Ack, A, 23,,
+1048s060:, TX, Ping, 1, 24,,
+1048s093:, RX, AnchorResponse, A, 24, -63
+1048s125:, TX, Ack, A, 24,,
+1049s060:, TX, Ping, 1, 25,,
+1049s093:, RX, AnchorResponse, A, 25, -63
+1049s125:, TX, Ack, A, 25,,
+1050s060:, TX, Ping, 1, 26,,
+1050s093:, RX, AnchorResponse, A, 26, -63
+1050s125:, TX, Ack, A, 26,,
+1051s060:, TX, Ping, 1, 27,,
+1051s093:, RX, AnchorResponse, A, 27, -63
+1051s125:, TX, Ack, A, 27,,
+1052s060:, TX, Ping, 1, 28,,
+1052s093:, RX, AnchorResponse, A, 28, -63
+1052s125:, TX, Ack, A, 28,,
+1053s060:, TX, Ping, 1, 29,,
+1053s093:, RX, AnchorResponse, A, 29, -63
+1053s125:, TX, Ack, A, 29,,
+1054s060:, TX, Ping, 1, 30,,
+1054s093:, RX, AnchorResponse, A, 30, -64
+1054s125:, TX, Ack, A, 30,,
+1055s060:, TX, Ping, 1, 31,,
+1055s093:, RX, AnchorResponse, A, 31, -63
+1055s125:, TX, Ack, A, 31,,
+1056s060:, TX, Ping, 1, 32,,
+1056s093:, RX, AnchorResponse, A, 32, -63
+1056s125:, TX, Ack, A, 32,,
+1057s060:, TX, Ping, 1, 33,,
+1057s093:, RX, AnchorResponse, A, 33, -63
+1057s125:, TX, Ack, A, 33,,
+1058s060:, TX, Ping, 1, 34,,
+1058s093:, RX, AnchorResponse, A, 34, -63
+1058s125:, TX, Ack, A, 34,,
+1059s060:, TX, Ping, 1, 35,,
+1059s093:, RX, AnchorResponse, A, 35, -63
+1059s125:, TX, Ack, A, 35,,
+1060s060:, TX, Ping, 1, 36,,
+1060s093:, RX, AnchorResponse, A, 36, -63
+1060s125:, TX, Ack, A, 36,,
+1061s060:, TX, Ping, 1, 37,,
+1061s093:, RX, AnchorResponse, A, 37, -63
+1061s125:, TX, Ack, A, 37,,
+1062s060:, TX, Ping, 1, 38,,
+1062s093:, RX, AnchorResponse, A, 38, -63
+1062s125:, TX, Ack, A, 38,,
+1063s060:, TX, Ping, 1, 39,,
+1063s093:, RX, AnchorResponse, A, 39, -62
+1063s125:, TX, Ack, A, 39,,
+1064s060:, TX, Ping, 1, 40,,
+1064s093:, RX, AnchorResponse, A, 40, -63
+1064s125:, TX, Ack, A, 40,,
+1065s060:, TX, Ping, 1, 41,,
+1065s093:, RX, AnchorResponse, A, 41, -62
+1065s125:, TX, Ack, A, 41,,
