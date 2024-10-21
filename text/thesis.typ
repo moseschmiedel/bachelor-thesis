@@ -370,7 +370,7 @@ earlier.
 The assumptions make it difficult to adopt the localization system proposed by Gotthard et al. for general use, but they investigate
 promising ideas which hopefully can be integrated into localization systems in the future to reduce their power consumption.
 
-== Similar work
+== Similar Work
 
 Fargas et al. evaluate LoRa for use in an alternative GPS-free geolocation system @fargas_gps-free_2017.
 Their proposed approach for localization with LoRa signals is based on precise measurements of the
@@ -453,7 +453,7 @@ This section presents the fundamental theory needed for implementing and evaluat
 As already stated LoRa is a radio technology proposed by SemTech and developed by the LoRa Alliance @vangelista_long-range_2015 which primary targets 
 
 
-== RSSI-based distance estimation
+== Log-Normal Path-Loss Model <log_normal>
 As already stated in @rssi RSSI-based distance estimation 
 
 == Multilateration <multilateration>
@@ -469,10 +469,10 @@ position of the end node must be located.
     caption: "Position estimation error with multilateration"
 )
 
-== Haversine formula
+== Haversine Formula
 @gardiner_collision_2011
 
-= Implementation
+= Implementation <implementation>
 In the scope of this thesis a simple RSSI-based LoRa localization system was implemented. This system and the decisions which led
 to the final design are presented in this section. For the sake of conciseness from now on the term "localization system" references,
 where the context does not say otherwise, the localization system that was implemented for this thesis.
@@ -768,7 +768,7 @@ static void OnTxDone(void) {
     ]
 ]
 
-=== Hardware drivers
+=== Hardware Drivers
 To develop firmware for the STM32WL55JC microcontroller the hardware drivers developed by STMicroelectronics were used.
 They provide an abstraction layer over the hardware so that the programmer can access hardware functionality via high level
 functions instead of configuring the peripheral registers themselves. This abstraction layer has the very creative name HAL, which stands for
@@ -870,7 +870,7 @@ UTIL_TIMER_StartWithPeriod(&interval_timer, INTERVAL_PERIOD_MS);
     ] 
 ]
 
-== Distance estimation and localization
+== Distance Estimation and Localization
 In order to estimate the position of an end node by trilateration, it is necessary to determine the distances between the end node and 
 at least three anchor nodes. As stated in the thesis title and in preceding chapters, the implemented localization system utilizes
 RSSI measurements to estimate these distances. For this to work the end node periodically transmits LoRa packets of type `Ping_t`.
@@ -1032,11 +1032,11 @@ method was chosen for the evaluated system.
 In this chapter two experiments, conducted for evaluating the performance of the implemented localization system, are presented and
 the resulting data is discussed.
 
-== Distance estimation <distance_evaluation>
+== Distance Estimation <distance_evaluation>
 #let dist_agg = {
     csv("data/distance_aggregated_error.csv", row-type: dictionary)
        .map(row => (experiment: row.experiment,
-           mean_error_m: float(row.mean_error_m),
+           standard_error_m: float(row.standard_error_m),
            max_error_m: float(row.max_error_m),
            min_error_m: float(row.min_error_m),
            slope: float(row.slope),
@@ -1050,14 +1050,18 @@ the resulting data is discussed.
            experiment: row.experiment,
            estimated_distance_m: float(row.estimated_distance_m),
            error_dist_m: float(row.error_dist_m),
-           mean_error_m: float(row.mean_error_m))
+           standard_error_m: float(row.standard_error_m))
        )
 }
 
 The distance estimation was evaluated with two devices, an anchor and an end node. As previously described, the end node periodically
 sent `Ping_t` packets which the anchor node responded with `AnchorResponse_t` packets which included the RSSI values it measured.
 These measurements were taken at different distances. At each distance multiple measurements were performed so that the average RSSI
-value per distance can be calculated to reduce the impact of RSSI variations.
+value per distance can be calculated to reduce the impact of RSSI variations. The measured distances reached from #text_qty(5, "m") to
+#text_qty(50, "m") and were measured with a tape measure. The end node and the anchor node were mounted on two wooden poles at approximately
+#text_qty(1.5, "m") above the ground with the antennas parallel to each other.
+The recorded data can is openly accessible and 
+can be found in the GitHub repository of this thesis @schmiedel_moseschmiedelbachelor-thesis_2024.
 
 #figure(
     caption: "Distance estimation setup at multiple distances",
@@ -1069,9 +1073,28 @@ value per distance can be calculated to reduce the impact of RSSI variations.
     )
 )
 
+The devices that were used for the experiments were described previously in @implementation. For all experiments the LoRa transceiver
+was configured with following parameters.
+
+#figure(
+    caption: "LoRa transceiver configuration",
+    table(
+        columns: (auto, auto),
+        align: (left, center),
+        inset: 8pt,
+        table.header([*Parameter*], [*Value*]),
+        [Frequency], text_qty(868, "MHz"),
+        [Bandwidth], text_qty(125, "kHz"),
+        [Spreading Factor], [7],
+        [Coding Rate], [4/5],
+        [Preamble Length], [8],
+        [Output Power], text_qty("+14", "dBm"),
+    )
+)
+
 /*
  * 1 methodology
-    - RSSI measured at different distances
+    - RSSI measured at different distances+
     - multiple measurements per distance (ca. 80) #sym.arrow.r
  * 2 explanation of data analysis
     - calculate average RSSI
@@ -1079,14 +1102,52 @@ value per distance can be calculated to reduce the impact of RSSI variations.
  * 3 presentation of all results
  */
 
-=== Data analysis
+=== Data Analysis
+To evaluate the data recorded during the experiments, the Log-Normal path-loss model of
+each dataset was calculated. This model was previously explained in @log_normal.
+To apply this model for distance estimation the values for $n$ and $P_0$ had to be determined.
+The RSSI equation of the Log-Normal path-loss model can be expressed as a linear function
+depending on the logarithm of the distance.
 
-$ "RSSI"(d) = 10 dot n dot log_10 (d/d_0) + P_0 $
+$ "RSSI"(d) = 10 n dot log_10 (d/d_0) + P_0 $
+$ y = a x + b $
+$ y = "RSSI"(d)," "a = 10 n," "x = log_10 (d/d_0)," "b = P_0 $
+
+Because of this expression of the Log-Normal model equation as a linear function, the
+coefficients could be determined by using linear regression to find $a$ and $b$. These
+are directly proportional to the unknown coefficients of the model.
+With the determined coefficients the Log-Normal model equation could be rewritten
+to obtain a function from RSSI to the distance $d$.
+Assuming that the distance $d_0$ at which $P_0$ is the measured power is #text_qty(1, "m")
+following statement is true.
+
+$ d("RSSI") = 10^(("RSSI" - 10 n) dot 1 / P_0) $
+
+This formula was then used as an distance estimator function. Note that altough the estimator
+function would take any real number as RSSI value, the measurement circuit of the LoRa transceiver only
+provides integer RSSI values. This means that the same RSSI value can be measured
+at different distances. In the following figures the results from two different experiments
+is plotted as a function from RSSI to distance. Both the measured and the estimated distance
+are included in the graph
 
 #figure(
-    caption: "Distance estimation visualization of experiment with the lowest error",
-    image("assets/best_exp_error.svg", width: 80%)
+    caption: "RSSI vs. Distance data from experiment 02_1",
+    image("assets/02_1.svg", width: 80%)
 )
+
+#figure(
+    caption: "RSSI vs. Distance data from experiment 07",
+    image("assets/07_1.svg", width: 80%)
+)
+
+As this visualization indicates the accuracy of this distance estimation approach
+decreases the further away the end node and the anchor node are. For example the distance
+between the RSSI of #text_qty(-50, "dBm") and #text_qty(-51, "dBm") are #text_qty(6.32, "m").
+The distance delta in which the same RSSI value is measured can be calculated with the following
+equation.
+
+$ Delta d("RSSI") = d("RSSI"+1) - d("RSSI") $
+
 
 === Results
 #figure(
@@ -1113,7 +1174,7 @@ $ "RSSI"(d) = 10 dot n dot log_10 (d/d_0) + P_0 $
         let results = dist_agg.map(row => (
             row.experiment,
             display_log_normal(row.slope, row.intercept),
-            num(row.mean_error_m),
+            num(row.standard_error_m),
             display_error(if calc.abs(row.max_error_m) > calc.abs(row.min_error_m) { row.max_error_m } else { row.min_error_m })
         ))
         table(
