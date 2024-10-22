@@ -3,7 +3,7 @@
 
 #set par(leading: 0.55em, first-line-indent: 0em, justify: true)
 
-= Appendix
+#heading(numbering: none)[Appendix]
 
 All software and data implemented and recorded for this thesis can be found online or on
 the provided USB drive.

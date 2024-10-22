@@ -152,7 +152,7 @@
 
 _Abstract_
 #v(1em)
-_For this thesis a LoRa localization system for outdoor use was implemented and evaluated. The system uses RSSI measurements to estimate
+_For this thesis, a LoRa localization system for outdoor use was implemented and evaluated. The system uses RSSI measurements to estimate
 the distances between three anchor nodes and one end node. A trilateration algorithm is employed to estimate the position
 of the end node based on these distances. The implementation decisions of the localization system are explained and
 the performance of the system is evaluated experimentally. The evaluation highlights the limitations of RSSI-based
@@ -191,11 +191,11 @@ Ort, Datum, Unterschrift
 #show outline: set heading(outlined: true)
 
 = Introduction
-With radio technology becoming smaller and smaller, a continuously increasing amount of devices
+With radio technology becoming smaller and smaller, a continuously increasing number of devices
 feature some form of localization capability. One popular example for this is the Apple AirTag#emoji.tm @noauthor_airtag_nodate.
-This device gives the broader public access to low power continous tracking technology.
+This device gives the broader public access to low-power continuous tracking technology.
 
-On the other hand with the rise of the internet of things (IoT) in industry 4.0 @rizzi_using_2017, tracking and localization
+On the other hand, with the rise of the internet of things (IoT) in industry 4.0 @rizzi_using_2017, tracking and localization
 technology is needed for tasks like asset tracking @priyanta_evaluation_2019 @gotthard_low-cost_2018,
 smart campus orientation @alves_introducing_2020 or collision avoidance @gardiner_collision_2011. But localization
 techniques are also essential for other applications like emergency rescue services @sciullo_design_2020 @mackey_lora-based_2019
@@ -223,7 +223,7 @@ promising long-range radio communication technology for IoT devices @vangelista_
 This section presents relevant literature correlating with mobile RSSI-based LoRa Localization.
 
 == Localization Methods
-There a multiple approaches for localization in RF based communication networks. The most commonly
+There a multiple approaches for localization in RF-based communication networks. The most commonly
 used all depend on one or more of four physical metrics of the received radio signal. These properties
 are the angle of arrival (AoA), time of arrival (ToA), time delay of arrival (TDoA) and received signal strength
 (RSSI) @marquez_understanding_2023[p.~3].
@@ -260,8 +260,7 @@ unattractive for low-cost applications @zare_applications_2021[p.~3].
 === Time of Arrival
 Another localization method presented in the media uses the time of arrival (ToA) of the radio signal.
 The ToA is used to calculate the time of flight (ToF) which is the time the radio signal needs to travel from
-the transmitter to the receiver. From this time and the speed of light, the distance between transmitter and receiver
-can be calculated @kuriakose_localization_2014.
+the transmitter to the receiver. From this time and the speed of light, the distance between transmitter and receiver can be calculated @kuriakose_localization_2014.
 
 The position of the end node can be estimated when at least three distances between different anchors and the end node
 can be measured. From these distances, the position can be derived by using trilateration. Trilateration calculates the
@@ -269,7 +268,7 @@ area of intersection between circles centered at the anchor nodes, each with the
 anchor node and the end node. An improved variant of this localization algorithm called multilateration is explained in @multilateration
 in more detail.
 
-ToA-based localization systems need high precision timing capabilities and strict time synchronization between anchor and end node.
+ToA-based localization systems need high-precision timing capabilities and strict time synchronization between anchor and end node.
 The following calculation demonstrates that to measure distances up to 1 m the time measurement must provide an accuracy
 of $plus.minus$ #qty("3.3", "ns").
 
@@ -310,12 +309,12 @@ LoRa receiver chips. This makes this method ideal for low-cost applications. Thi
 high as the other presented localization techniques @marquez_understanding_2023[p.~11].
 
 == Low Power
-LoRa is radio communication technology promising low power consumption compared to conventional long range radio communication
+LoRa is radio communication technology promising low-power consumption compared to conventional long-range radio communication
 technologies @vangelista_long-range_2015[p.~7]. This is an active field of research because the power budget is an important design factor
-for mobile applications due to them being limited to battery-based power supplies.
+for mobile applications because they are limited to battery-based power supplies.
 
 #v(0.4em)
-One goal of this thesis is to evaluate RSSI-based localization in a mobile application. This implies, for the above mentioned reasons, that the
+One goal of this thesis is to evaluate RSSI-based localization in a mobile application. This implies, for the previously mentioned reasons, that the
 evaluation of the resulting localization system must include some form of power consumption characterization.
 To find and evaluate the real power characteristics of devices using LoRa communication technology, several studies were performed already.
 Some of these works are presented in the following section.
@@ -396,11 +395,11 @@ In @mackey_lora-based_2019 Mackey et al. evaluate the power consumption of a LoR
 and an Arduino Uno microcontroller. Like El Agroudy et al. they also implement an localization algorithm working with fixed communication intervals to
 reduce the amount of time the system is in active mode. They evaluated the power consumption of the receiver node (end node) and the transmitter node
 (anchor node) separately. They also varied the transmission power and transmission rate and found that they could configure their whole localization system,
-which consisted of three anchor nodes and one end node, so that it consumed around #text_qty("350", "mW"). They compared this with the power consumption
+which consisted of three anchor nodes and one end node so that it consumed around #text_qty("350", "mW"). They compared this with the power consumption
 of the GPS module integrated in the Dragino Shield and found that their system outperforms GPS-based localization when at least four end nodes use the
 deployed anchor nodes.
 
-Despite these promising findings there is still room for improvement. Mackey et al. estimated the lifetime of a #text_qty("5000", "mAh")
+Despite these promising findings, there is still room for improvement. Mackey et al. estimated the lifetime of a #text_qty("5000", "mAh")
 battery when used as a power source for the anchor or the end node. They found that their anchor node could run up to 200 hours with one
 battery charge, but their end node would only last for 90 hours. These values would make this solution practical in ad-hoc short-term
 scenarios where a localization system is need quick and only for a couple of days, but for remote long-term deployments improvements need
@@ -409,9 +408,9 @@ to be made especially for the power consumption of the anchor node.
 #v(0.4em)
 Gotthard et al. implement a LoRa RSSI-based system in @gotthard_low-cost_2018, specialized for asset localization in large carparks.
 They found that with their localization technique a single node of their system could run for about 5 years powered by an #text_qty("800", "mAh")
-CR2 battery. This result looks rather promising compared to the other findings presented in this section. But the system Gotthard et al. builds
-on fundamental assumptions taken about the environment and scenario the localization is performed in. This includes the assumption
-that many nodes are deployed in a relatively dense space which simplifies the problem with communication coordination explained 
+CR2 battery. This result looks rather promising compared to the other findings presented in this section. But the system of Gotthard et al. is built
+on fundamental assumptions taken about the environment and scenario, the localization is performed in. This includes the assumption
+that many nodes are deployed in a relatively dense space, which simplifies the problem with communication coordination explained 
 earlier.
 
 The assumptions make it difficult to adopt the localization system proposed by Gotthard et al. for general use, but they investigate
@@ -437,7 +436,7 @@ Fargas et al. also showed in their work, that by using the Generalized ESD test 
 the distance measurement data, they could improve the accuracy of the position estimation.
 
 The idea of GPS-less localization is further advanced by Mackey et al. in @mackey_lora-based_2019 where they evaluate LoRa as alternative localization system
-for Emergency Services. Instead of using the TDoA method for localizing the end node, they employ RSSI-based localization. For this they
+for Emergency Services. Instead of using the TDoA method for localizing the end node, they employ RSSI-based localization. For this, they
 use an Arduino Uno microcontroller together with the Dragino LoRa v1.3 Shield, which both are readily available off-the-shelf hardware components.
 They evaluate their implementation on a soccer field of #text_qty("200", "m") #sym.times #text_qty("120", "m") where they achieve positioning accuracies
 up to #text_qty("9", "m").
@@ -449,25 +448,25 @@ continuously improve the RSSI-distance model over time by correlating their GPS 
 model.
 
 In @gotthard_low-cost_2018 Gotthard et al. evaluate RSSI-based LoRa localization as asset tracking system for large used car dealerships. They
-present a novel variant of RSSI-based localization where end nodes only send "ping" messages between one another. The RSSI acquired from these "pings"
-are transmitted to a central server, where they can be combined to approximate the position of the individual end nodes. Through this mechanism their
+present a novel variant of RSSI-based localization, where end nodes only send "ping" messages between one another. The RSSI acquired from these "pings"
+are transmitted to a central server, where they can be combined to approximate the position of the individual end nodes. Through this mechanism, their
 proposed system does not require any anchor devices.
 
 == Contribution of this Thesis
-As shown in @similar_work multiple implementations of LoRa localization exist already. This thesis focuses
+As shown in @similar_work, multiple implementations of LoRa localization exist already. This thesis focuses
 on the implementation of a LoRa localization system implemented with already available off-the-shelf components.
 The implemented localization system uses a range-based algorithm for position estimation. The distances needed
-for that are estimated with the RSSI. This path is chosen because almost every receiver hardware has RSSI measurement
+for that, are estimated with the RSSI. This path is chosen because almost every receiver hardware has RSSI measurement
 capability and is therefore widely accessible.
 
 The goal of this thesis is to evaluate the feasibility of RSSI-based LoRa localization with the implemented localization system.
-For that the performance of the distance and the position estimation are evaluated and the power consumption of the system is measured.
+For that, the performance of the distance and the position estimation are evaluated and the power consumption of the system is measured.
 
 = Principals
 This section presents the fundamental theory needed for implementing and evaluating RSSI-based localization systems with LoRa. 
 
 == Path-Loss Model <path_loss_model>
-To estimate distances based on the RSSI measured at the receiver a relation between RSSI and distance needs to be
+To estimate distances based on the RSSI measured at the receiver, a relation between RSSI and distance needs to be
 established. This relation is commonly modeled as the power loss experienced by the transmitted signal over distance.
 This is based on the assumption that the average power of a radio signal decays with the distance from the transmitter
 according to some deterministic attenuation law @zanella_best_2016[p.~2]. This model is called Path-Loss Model (PLM).
@@ -482,11 +481,11 @@ the random variation in space and time. The relation $D(d)$ can be modeled furth
 
 $ D(d) = P_0 - 10n dot log_10 (d/d_0) "   " forall d >= d_0 $
 
-As can be seen $D(d)$ is only defined for distances $d$ greater then $d_0$. $d_0$ is the reference distance at which
+As can be seen, $D(d)$ is only defined for distances $d$ greater than $d_0$. $d_0$ is the reference distance at which
 the initial received power $P_0$ can be measured. The factor $n$ is called the path-loss coefficient. It mainly influences 
 the slope with which the model predicts the attenuation of the received power over distance @zanella_best_2016[pp.~5-7].
 
-For this thesis $Psi(s)$ and $a(t)$ are assumed as neglible and therefore the received power or RSSI is only modeled dependent on $D(d)$:
+For this thesis, $Psi(s)$ and $a(t)$ are assumed as negligible and therefore the received power or RSSI is only modeled dependent on $D(d)$:
 
 $ "RSSI"(d) = P_0 - 10n dot log_10 (d/d_0) "   " forall d >= d_0 $ <eqn:rssi>
 
@@ -498,8 +497,8 @@ be known to localize the end node.
 
 The algorithm can be visualized by drawing circles, each with the measured distance at the anchor
 as radius, around the positions of the anchors. The position of the end node is estimated by the point of intersection of all
-the circles. In a perfect scenario this single point of intersection would exist, but in a real-world scenario the distance measurement
-always includes an error. Due to this error the circles all intersect at different points. These points describe an area in which the real
+the circles. In a perfect scenario, this single point of intersection would exist, but in a real-world scenario the distance measurement
+always includes an error. Due to this error, the circles all intersect at different points. These points describe an area in which the real
 position of the end node must be located.
 
 #figure(
@@ -507,7 +506,7 @@ position of the end node must be located.
     caption: "Position estimation error with multilateration"
 )
 
-To solve the multilateration problem algebraically the formulas for the circles are combined to form a system of equations.
+To solve the multilateration problem algebraically, the formulas for the circles are combined to form a system of equations.
 For the special case of three points $P_1(x_1, y_1), P_2(x_2, y_2), P_3(x_3, y_3)$ with corresponding
 distances $d_1, d_2, d_3$ the resulting system would look like this:
 
@@ -533,7 +532,7 @@ mat(d_1^2 - x_1^2 - y_1^2;
 )
 $
 
-In this form the general equation for an arbitrary amount $n$ of anchor nodes $a_n$
+In this form, the general equation for an arbitrary amount $n$ of anchor nodes $a_n$
 and distances $d_n$ can be expressed as follows:
 $ mat(1, -2x_1, -2y_1;
       1, -2x_2, -2y_2;
@@ -559,12 +558,11 @@ The derivation and solution of this system of equations is explained in more
 detail in @norrdine_algebraic_2012
 
 = Implementation <implementation>
-In the scope of this thesis a simple RSSI-based LoRa localization system was implemented. This system and the decisions which led
-to the final design are presented in this section. For the sake of conciseness from now on the term "localization system" references,
+In the scope of this thesis, a simple RSSI-based LoRa localization system was implemented. This system and the decisions which led to the final design are presented in this section. For the sake of conciseness, from now on, the term "localization system" references,
 where the context does not say otherwise, the localization system that was implemented for this thesis.
 
 == System Overview
-The localization system implemented for this thesis consists of multiple components. Some of them have physical, others have only logical boundaries.
+The localization system implemented in this thesis consists of multiple components. Some of them have physical, others have only logical boundaries.
 The following graphic illustrates the localization system as a whole and gives a quick overview.
 
 #figure(
@@ -572,18 +570,18 @@ The following graphic illustrates the localization system as a whole and gives a
     caption: "LoraLocator system overview"
 )
 
-The graphic shows that there are two different types of devices Anchor nodes and End nodes. These serve different purposes in the localization system.
-The End node is the device which position should be localized. The Anchor nodes serve as fixpoints for the measurements taken to estimate the position of the 
-End node. The system which was implemented and evaluated in this thesis consists of three Anchor nodes and one End node.
-In-depth explanations of the individual components that make up one Anchor or one End node follow in the subsequent sections of this chapter.
+The graphic shows that there are two different types of devices, anchor nodes and end nodes. These serve different purposes in the localization system.
+The end node is the device which position should be localized. The anchor nodes serve as fix points for the measurements taken to estimate the position of the 
+end node. The system which was implemented and evaluated in this thesis consists of three anchor nodes and one end node.
+In-depth explanations of the individual components that make up one anchor or one end node follow in the subsequent sections of this chapter.
 
 == Hardware
-Both device types of the localization system are built with the same hardware and differ only in firmware. Every device consist of a NUCLEO-WL55JC
-@noauthor_nucleo-wl55jc_nodate this is a evaluation board for the STM32WL55JC microcontroller @noauthor_stm32wl55jc_nodate developed and manufactured by
+Both device types of the localization system are built with the same hardware and differ only in firmware. Every device consists of a NUCLEO-WL55JC
+@noauthor_nucleo-wl55jc_nodate this is an evaluation board for the STM32WL55JC microcontroller @noauthor_stm32wl55jc_nodate developed and manufactured by
 STMicroelectronics (ST) @noauthor_stmicroelectronics_nodate. This board features LoRa transceiver, an integrated programmer and debugger, connectors for the GPIO pins
 of the microcontroller and easy power supply over Micro-USB. This solution was chosen for several reasons. Most important is of course that the hardware satisfies
 the basic requirements imposed by the goal of this thesis to implement and evaluate a mobile RSSI-based LoRa localization system. This criterion is fulfilled by 
-the NUCLEO-WL55JC evaluation board because it provides an integrated LoRa transceiver with built-in RSSI measurement and promises comparatively low power consumption
+the NUCLEO-WL55JC evaluation board because it provides an integrated LoRa transceiver with built-in RSSI measurement and promises comparatively low-power consumption
 in the datasheet @noauthor_stm32wl55xx_2022.
 Another reason for which the NUCLEO-WL55JC was chosen is the benefit of using prebuilt hardware with a big ecosystem like that of ST. This allows for rapid prototyping
 by focusing development work on the parts where this localization system differs from previous implementations and reusing boilerplate code where possible. One such part
@@ -687,13 +685,13 @@ The following graphic illustrates the individual logical components the firmware
     ) <firmware_architecture>
 
 The main component of the firmware is the _LoraLocator_ application. It controls all the other components and implements the logic
-that is needed for estimating the position of an End node.
+that is needed for estimating the position of an end node.
 
 === Conditional compilation
-As described earlier, the firmware of the Anchor node and the End node differ because they 
+As described earlier, the firmware of the anchor node and the end node differ because they 
 both fulfill different tasks in the localization system. Despite their differences these also share some similarities especially in the way the both 
-process incoming and outgoing communication data via LoRa. To avoid unnecessary code duplication both the firmware for the Anchor node and for the End node
-share the same codebase and node type specific code sections are conditionally included upon compilation depending on which device type was selected via 
+process incoming and outgoing communication data via LoRa. To avoid unnecessary code duplication both the firmware for the anchor node and for the end node
+share the same code base and node type specific code sections are conditionally included upon compilation depending on which device type was selected via 
 preprocessor macros. For this purpose there are three macro definitions which must be configured when compiling the firmware.
 
 #figure(caption: "Device type and ID configuration")[
@@ -713,15 +711,15 @@ preprocessor macros. For this purpose there are three macro definitions which mu
     ]
 ]
 
-These three macro definitions are then used inside macro conditionals which control which part of the source code is included in the firmware build. Following
+These three macro definitions are then used inside macro conditionals, which control which part of the source code is included in the firmware build. Following
 code snippet demonstrates a use of a macro conditional.
-#figure(caption: "Device type specific code compilation")[
+#figure(caption: "Device type-specific code compilation")[
     #sourcecode[
 ```c
 #if IS_ANCHOR_NODE==1 && IS_END_NODE==0
-// Anchor node specific code goes here...
+// anchor node specific code goes here...
 #elif IS_ANCHOR_NODE==0 && IS_END_NODE==1
-// End node specific code goes here...
+// end node specific code goes here...
 #else
 #error "Set atleast/only one of IS_ANCHOR_NODE and IS_END_NODE to 1."
 #endif
@@ -734,7 +732,7 @@ The driving design concept of the LoraLocator application is the finite state ma
 performed by the event handlers and the logic executed in a specific state is handled by the core application function `LoraLocator_Process()`.
 // TODO insert state machine
 
-All application specific state is centralized and managed with a fixed amount of memory. All variables needed can be found at
+All application-specific state is centralized and managed with a fixed amount of memory. All the variables needed can be found at
 the top of the file `lora_locator_app.c` @schmiedel_moseschmiedellora-locator_2024.
 
 #figure(caption: "Track last performed action")[
@@ -754,7 +752,7 @@ static NodeState_t node_state = NODE_STATE_INIT;
 
 The variable `node_state` is used in the core application function `LoraLocator_Process()` to determine the last action that was performed before 
 the core function was called. The possible node states are:
-/ NODE_STATE_INIT: State the application is in after initialization. Start of the application lifecycle. 
+/ NODE_STATE_INIT: State the application is in after initialization. Start of the application life cycle. 
 / NODE_STATE_INTERVAL_START: State after the main application interval was triggered. `Ping_t` is transmitted or received depending on 
     device type.
 / NODE_STATE_RX_END: State after node was receive mode. The received packet is decoded and the next action is triggered
@@ -840,7 +838,7 @@ To complete the implementation of the application state machine the state stored
 state to another. This is done in the event handler functions by setting the 
 state via the helper function `SetState(NodeState_t next_state)` and calling
 `QueueLoraLocatorTask()` to signal the scheduler to run the `LoraLocator_Process()`
-function again. The corresping code can be found in the listing below on lines 5 and 6.
+function again. The corresponding code can be found in the listing below on lines 5 and 6.
 
 #figure(caption: "Example state change in transmission-done event handler")[
     #sourcecode[
@@ -884,16 +882,16 @@ Radio.Rx(rx_buffer, RX_TIMEOUT_MS);
 
 The code above transmits a payload of 10 bytes via a LoRa packet, as demonstrated in lines 1 to 3.
 Lines 4 to 6 show how the transceiver can be configured to receive the transmitted packet.
-Reception will fail after the time specified by `RX_TIMEOUT_MS`
-which in this case would be #text_qty(200, "ms"). Of course, sending and receiving should be done by separate devices
-at the same time for them to communicate successfully.
+Reception will fail after the time specified by `RX_TIMEOUT_MS`.
+Which in this case would be #text_qty(200, "ms"). Of course, sending and receiving should be done by separate devices
+at the same time, for them to communicate successfully.
 
 A more detailed explanation of how to build LoRa applications with the _SubGHz_Phy_ driver and the documentation of the all
 available methods can be found in here @noauthor_an5406_2022.
 
 === Utilities
 Several utility modules distributed by STMicroelectronics were used to simplify the firmware development process.
-They helped reduce the amount of boilerplate code, i.e. source code required for basic project setup that has
+They helped reduce the amount of boilerplate code, i.e., source code required for basic project setup that has
 little variation between different projects. @firmware_architecture lists all the utility modules used for the final
 firmware. This section briefly introduces the two most influential modules.
 
@@ -926,8 +924,8 @@ static void QueueLoraLocatorTask() {
 
 Basic timing functionality is implemented in the _LoraLocator_ application with the *Timer server* module. This module allows
 to create an arbitrary amount of independent timers. A timer generates a timeout event and calls a provided event handler function
-after a fixed amount of time provided upon creation. The time is specified in Milliseconds. Unfortunately no official documentation
-could be found for this module but most important functionality can be understood by directly reading the source code @noauthor_lora-locatorutilitiestimerstm32_timerc_nodate.
+after a fixed amount of time provided upon creation. The time is specified in Milliseconds. Unfortunately, no official documentation
+could be found for this module, but most important functionality can be understood by directly reading the source code @noauthor_lora-locatorutilitiestimerstm32_timerc_nodate.
 
 #figure(caption: "Timer creation")[
     #sourcecode[
@@ -959,9 +957,9 @@ UTIL_TIMER_StartWithPeriod(&interval_timer, INTERVAL_PERIOD_MS);
 ]
 
 == Distance Estimation and Localization
-In order to estimate the position of an end node by trilateration, it is necessary to determine the distances between the end node and 
+To estimate the position of an end node by trilateration, it is necessary to determine the distances between the end node and 
 at least three anchor nodes. As stated in the thesis title and in preceding chapters, the implemented localization system utilizes
-RSSI measurements to estimate these distances. For this to work the end node periodically transmits LoRa packets of type `Ping_t`.
+RSSI measurements to estimate these distances. For this to work, the end node periodically transmits LoRa packets of type `Ping_t`.
 
 #v(1em)
 #stack(dir: ltr,
@@ -1002,7 +1000,7 @@ figure(caption: "`Ping_t` transmission")[
         line("end_node.east", (4.5, 2.25), stroke: (thickness: 3pt, dash: "dashed"), mark: (end: ">"), name: "ping_line")
         label(("ping_line.start", 60pt, "ping_line.end"), angle: "ping_line.end", [`Ping_t`], name: "ping_label")
 
-        label("end_node.south-east", padding: (left: 50pt, top: 20pt), [End node], name: "end_node_label")
+        label("end_node.south-east", padding: (left: 50pt, top: 20pt), [end node], name: "end_node_label")
         label("anchor_a.north-west", padding: (right: 10pt, bottom: 20pt), [Anchor A], name: "anchor_a_label")
         label("anchor_b.north-east", padding: (left: 10pt, bottom: 20pt), [Anchor B], name: "anchor_b_label")
         label("anchor_c.south-west", padding: (top: 20pt), [Anchor C], name: "anchor_c_label")
@@ -1067,9 +1065,9 @@ typedef struct {
 During the transmission of the `AnchorResponse_t` a collision could occur which hinders the end node from decoding
 the packet. This happens when multiple anchor nodes start transmitting its response almost at the same time. To detect when this is happening
 another packet type `Ack_t` is introduced. An anchor nodes always expects an end node to respond to a successful `AnchorResponse_t` with
-an `Ack_t`. If the anchor node does not receive this `Ack_t` in a configurable amount of time it retries sending the `AnchorResponse_t`.
+an `Ack_t`. If the anchor node does not receive this `Ack_t` in a configurable amount of time, it retries sending the `AnchorResponse_t`.
 The maximum of retries can also be configured via the macro `MAX_ANCHOR_RESPONSE_RETRIES`, which defaults to 3. When this number of
-retries is reached the anchor node gives up and goes to sleep until it receives the next `Ping_t`.
+retries is reached, the anchor node gives up and goes to sleep until it receives the next `Ping_t`.
 
 #figure(caption: "Packet type `Ack_t`")[
     #sourcecode[
@@ -1089,8 +1087,8 @@ typedef struct {
 The end uses the decoded RSSI value `recv_rssi` from a successful `AnchorResponse_t` to calculate the distance between
 itself and the anchor node with a path-loss model. The chosen path-loss model is the log-normal model which is explained in more detail during the
 evaluation of the distance estimation in @distance_evaluation. The estimated distances can then be combined to calculate a position relative
-to the positions of the anchor nodes by employing the trilateration algorithm or its generalization the multilateration algorithm. These
-algorithms are explained in @multilateration. To obtain an absolute position the relative position can be added to the absolute position of an
+to the positions of the anchor nodes by employing the trilateration algorithm or its generalization, the multilateration algorithm. These
+algorithms are explained in @multilateration. To obtain an absolute position, the relative position can be added to the absolute position of an
 anchor node.
 
 #v(.4em)
@@ -1100,7 +1098,7 @@ by highlighting some key features of the chosen implementation.
 A significant feature of this localization system is the amount of control the end node can exert. Because the whole system 
 relies on the periodic `Ping_t` packets of the end node, it can effectively regulate the frequency with which measurements are taken.
 This frequency is referred to as tracking rate. This equips the end node with a mechanism to increase or reduce the localization
-precision on demand, which is useful in a situation where the velocity of the end node changes. In this scenario the end node could
+precision on demand, which is useful in a situation where the velocity of the end node changes. In this scenario, the end node could
 increase the tracking rate while traveling at a high velocity and subsequently reduce the tracking rate, thereby lowering power consumption,
 when traveling at a low velocity.
 
@@ -1109,12 +1107,12 @@ the same `Ping_t`. This mitigates the impact of variations in the transmitter ci
 environmental influences on the localization process.
 
 The main drawback of this approach is the amount of transmitted packets. In comparison to the distance estimation approach implemented by
-Bluetooth Low Energy beacons @faragher_location_2015 @qamaz_experimental_2022, this implementation needs twice as much packets for a single
-localization cycle. This is because with the BLE approach the anchor nodes periodically send short packets which are received by the end node
+Bluetooth Low Energy beacons @faragher_location_2015 @qamaz_experimental_2022, this implementation needs twice as many packets for a single
+localization cycle. This is because with the BLE approach, the anchor nodes periodically send short packets which are received by the end node
 and are used to estimate the distances between itself and the anchor nodes without the need for response to the ping message. 
 
-Despite this drawback, the benefits would enable some interesting advantages over existing solutions. For this reason this localization
-method was chosen for the evaluated system.
+Despite this drawback, the benefits would enable some interesting advantages over existing solutions. For this reason, this localization
+method was selected for the evaluated system.
 
 = Evaluation
 In this chapter two experiments, conducted for evaluating the performance of the implemented localization system, are presented and
@@ -1143,14 +1141,14 @@ the resulting data is discussed.
 }
 
 The distance estimation was evaluated with two devices, an anchor and an end node. As previously described, the end node periodically
-sent `Ping_t` packets which the anchor node responded with `AnchorResponse_t` packets which included the RSSI values it measured.
-These measurements were taken at different distances. At each distance multiple measurements were performed so that the average RSSI
+sent `Ping_t` packets, which the anchor node responded with `AnchorResponse_t` packets which included the RSSI values it measured.
+These measurements were taken at different distances. At each distance, multiple measurements were performed so that the average RSSI
 value per distance can be calculated to reduce the impact of RSSI variations. The measured distances reached from #text_qty(5, "m") to
 #text_qty(50, "m") and were measured with a tape measure. The end node and the anchor node were mounted on two wooden poles at approximately
 #text_qty(1.5, "m") above the ground with the antennas parallel to each other.
 
 To also measure larger distances, the experiment setup was slightly modified. Instead of using a tape measure as reference for the distance, 
-the iOS-App "GPS Tracks" @noauthor_gps_2024-1 was used. With it the position of the anchor node was recorded as a waypoint. All distances
+the iOS-App "GPS Tracks" @noauthor_gps_2024-1 was used. With it, the position of the anchor node was recorded as a waypoint. All distances
 of the end node were then measured relative to this waypoint. The collection of the RSSI measurements stayed the same. This setup was
 used to measure distances in a range from #text_qty(10, "m") to #text_qty(160, "m").
 
@@ -1166,7 +1164,7 @@ The recorded data is openly accessible and can be found in the GitHub repository
     )
 )
 #v(-1em)
-The devices that were used for the experiments were described previously in @implementation. For all experiments the LoRa transceiver
+The devices that were used for the experiments were described previously in @implementation. For all experiments, the LoRa transceiver
 was configured with following parameters.
 #figure(
     caption: "LoRa transceiver configuration",
@@ -1195,7 +1193,7 @@ was configured with following parameters.
  */
 
 === Data Analysis
-Multiple experiment runs where performed to evaluate the distance estimation method presented in this thesis.
+Multiple experiment runs were performed to evaluate the distance estimation method presented in this thesis.
 Based on @eqn:rssi empirical models to estimate the distance from a measured RSSI value were built with
 the data of each run. The following table shows the maximum and relative error for each experiment run.
 The relative error was obtained by calculating the average of the differences between actual and estimated distance divided
@@ -1256,7 +1254,7 @@ $ e_"max" = max({|d_"estimated" - d_"actual"|  | forall d_"estimated", d_"actual
 
 To evaluate the data recorded during the experiments, the Log-Normal path-loss model of
 each dataset was calculated. This model was previously explained in @path_loss_model.
-To apply this model for distance estimation the values for $n$ and $P_0$ had to be determined.
+To apply this model for distance estimation, the values for $n$ and $P_0$ had to be determined.
 The RSSI equation of the PLM can be expressed as a linear function
 depending on the logarithm of the distance.
 
@@ -1264,20 +1262,20 @@ $ "RSSI"(d) = P_0 - 10 n dot log_10 (d/d_0) $
 $ y = a x + b $
 $ y = "RSSI"(d)," "a = -10 n," "x = log_10 (d/d_0)," "b = P_0 $
 
-Because of this expression of the Log-Normal model equation as a linear function, the
+Because of this expression of the Path-Loss Model equation as a linear function, the
 coefficients could be determined by using linear regression to find $a$ and $b$. These
 are directly proportional to the unknown coefficients of the model.
-With the determined coefficients the Log-Normal model equation could be rewritten
+With the determined coefficients, the Path-Loss Model equation could be rewritten
 to obtain a function from RSSI to the distance $d$.
 Assuming that the distance $d_0$ at which $P_0$ is the measured power is #text_qty(1, "m")
 following statement is true.
 
 $ d("RSSI") = 10^(("RSSI" + 10 n) dot 1 / P_0) $
 
-This formula was then used as an distance estimator. Note that altough the estimator
+This formula was then used as a distance estimator. Note that although the estimator
 function would take any real number as RSSI value, the measurement circuit of the LoRa transceiver only
 provides integer RSSI values. This means that the same RSSI value can be measured
-at different distances. In the following figures the results from two different experiments
+at different distances. In the following figures, the results from two different experiments
 is plotted as a function from RSSI to distance. Both the measured and the estimated distance
 are included in the graph
 
@@ -1317,19 +1315,19 @@ be found in the data shown in @kwasme_rssi-based_2019[pp.~7-8].
 == Localization
 For the evaluation of the localization implementation the test setup was modified. On a 
 large grass field (Rosental in Leipzig) three anchor nodes were setup on wooden poles
-in three corners of the field. Their positions were chosen to maximize the area were communication with
-all three anchors is possible. With the iOS-App "GPS Data Smart" @noauthor_gps_2024 the absolute
+in three corners of the field. Their positions were chosen to maximize the area where communications with
+all three anchors were possible. With the iOS-App "GPS Data Smart" @noauthor_gps_2024 the absolute
 positions of the three anchors were measured.
 
 After installing all three anchors, the end node was used to perform RSSI measurements at three different
-positions. Again the actual position of the end node was measured with the previously mentioned iOS-App.
+positions. Again, the actual position of the end node was measured with the previously mentioned iOS-App.
 The RSSI readings were recorded for later evaluation.
 
 === Data Analysis
 The actual positions of the anchor nodes and the end node were all measured with GPS.
 This data was in latitude/longitude format. To further process the positions their
 cartesian representation was needed. This conversion was performed based on the WGS-84
-ellipsoid which is used for GPS @gisgeography_world_2015. After that for better readability
+ellipsoid, which is used for GPS @gisgeography_world_2015. After that for better readability
 all positions were expressed relative to the position of Anchor A.
 
 #let anchor_data = {
@@ -1366,9 +1364,9 @@ all positions were expressed relative to the position of Anchor A.
 )
 
 The localization data was evaluated with the models of the two best distance estimations.
-For that the average RSSI value for every anchor at each position was determined.
+For that, the average RSSI value for every anchor at each position was determined.
 This was then used with the distance estimator to obtain the distances from the end node
-to each anchor node. With these distances the trilateration (multilateration with three
+to each anchor node. With these distances, the trilateration (multilateration with three
 distances) algorithm was used to estimate the position of the end node. Following
 table shows the data collected in the localization experiments and the associated estimated
 positions. Most distance estimations led to not enough circles intersecting which makes a position
@@ -1376,8 +1374,8 @@ estimation impossible.
 
 To accommodate for the uncertainty of the distance estimation, the 
 multilateration algorithm was also slightly modified. Instead of calculating the point
-where all circles intersect it now just calculates the pairwise intersection points.
-Each pairwise intersection could results in two points, so a strategy to choose one
+where all circles intersect, it now just calculates the pairwise intersection points.
+Each pairwise intersection could result in two points, so a strategy to choose one
 of them must be provided. The first point is chosen by calculating the distance
 of both points to the third anchor node that was not involved in the intersection.
 The point with the lower distance is chosen as starting point. After that always
@@ -1510,8 +1508,8 @@ despite being able to estimate a position in @loc_pos2 experiment 07.
 To estimate the power consumption of the implemented localization system. The current drawn at a fixed voltage
 (#text_qty(5, "V")) of one node was measured in different operating modes. This measurement was conducted
 by connecting a multimeter in series with lab bench power supply and the device. The power supply was configured
-to provide a fixed voltage of #text_qty(5, "V"). Special firmware with hardcoded operating modes was used
-to eliminate as much other influences as possible.
+to provide a fixed voltage of #text_qty(5, "V"). Special firmware with hard-coded operating modes was used
+to eliminate as many other influences as possible.
 #v(-.2em)
 #figure(
     caption: "Power consumption",
@@ -1529,7 +1527,7 @@ to eliminate as much other influences as possible.
 It can be seen that the power consumption of one node is quite low. If we assume that the node transmits two packets
 per second, listens for incoming packets for #text_qty(400, "ms") and sleeps for the rest of the time, following 
 average power consumption can be calculated. $T_"tx"$ is the time one packet needs to be transmitted. For all
-packets in the implemented system this time is approximately #text_qty(40, "ms").
+packets in the implemented system, this time is approximately #text_qty(40, "ms").
 
 $ P_"total" = P_"tx" + P_"rx" + P_"sleep" $
 $ P_"tx" = (2 dot T_"tx") / qty("1000", "ms") dot qty("135", "mW") $
@@ -1541,16 +1539,16 @@ With a battery capacity of #text_qty(40000, "mWh") (LiPo battery with #text_qty(
 system would be #text_qty(1303, "h") or 54.3 days.
 
 = Future Works
-As stated in the goal of this thesis a localization system based on RSSI measurements for LoRa was implemented and
+As stated in the goal of this thesis, a localization system based on RSSI measurements for LoRa was implemented and
 evaluated. The implementation presented the design decision necessary for building a localization system. These included
-for example the importance of communicating the reception of a packet sent by an anchor node and the benefits of
+for example, the importance of communicating the reception of a packet sent by an anchor node and the benefits of
 triggering the localization by a packet sent by an end node.
 
 The evaluation of this localization system showed that the possibility to fit models for distance estimation based on
-RSSI exists but refinement has to be done to use the distance estimation models for position estimation.
+RSSI exists, but refinement has to be done to use the distance estimation models for position estimation.
 
-These refinements could not be explored as part of this work but some clues from the evaluation allow to
-draw some assumptions where those refinements would likely be most impactful.
+These refinements could not be explored as part of this work, but some clues from the evaluation allow to
+draw some assumptions, where those refinements would likely have the most impact.
 
 #v(.4em)
 The first refinement that should be considered is the repeatability of the distance estimation. This could
@@ -1560,7 +1558,7 @@ absolute position measurement using the mobile phone, with a GPS receiver integr
 This receiver could be sampled in addition to the RSSI measurements.
 #v(.4em)
 Following work should also consider increasing the sample size of the measuring devices. Due to manufacturing limitations
-minor variations in transmitting and receiving circuits exists. Maybe the effect of these variations on the estimated distance
+minor variations in transmitting and receiving circuits exist. Maybe the effect of these variations on the estimated distance
 could be observed and eliminated. 
 #v(.4em)
 When refining the RSSI distance estimation, one could also analyze the variations shown at higher distances. Finding the cause
@@ -1568,7 +1566,7 @@ and decreasing or even eliminating it, would possibly result in more accurate di
 position estimation.
 #v(.4em)
 Another possible optimization lies in the chosen path-loss model. This thesis only employed a single-slope model, but in
-the literature models with two or more slopes exists @zanella_best_2016[p.~20]. This possibly could improve the
+the literature models with two or more slopes exist @zanella_best_2016[p.~20]. This possibly could improve the
 accuracy of the distance estimation by employing different curves at different distances.
 #v(.4em)
 Regarding the localization algorithm, other methods could be explored. Possibilities include the weighted LMS approach
