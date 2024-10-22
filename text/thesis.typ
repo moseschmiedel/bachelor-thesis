@@ -222,10 +222,10 @@ promising long-range radio communication technology for IoT devices @vangelista_
 
 This section presents relevant literature correlating with mobile RSSI-based LoRa Localization.
 
-== Localization methods
+== Localization Methods
 There a multiple approaches for localization in RF based communication networks. The most commonly
 used all depend on one or more of four physical metrics of the received radio signal. These properties
-are the angle of arrival (AoA), time of arrival (ToA), Time delay of arrival (TDoA) and received signal strength
+are the angle of arrival (AoA), time of arrival (ToA), time delay of arrival (TDoA) and received signal strength
 (RSSI) @marquez_understanding_2023[p.~3].
 
 The presented localization algorithms use fixed reference points with known positions
@@ -385,7 +385,7 @@ I_"total" &= (I_"Active" dot t_"Active" + I_"Sleep" dot (t_"wake-up" - t_"Active
 $
 
 They used a #text_qty("620", "mAh") battery and configured their system to be in the Active mode for 5% of the time. They found that through this method
-they could improve the life time of their battery from 14.46 hours to 288 hours.
+they could improve the lifetime of their battery from 14.46 hours to 288 hours.
 
 A challenge for this approach is that a device cannot receive any signals while in Sleep mode. This challenge must influence the design of the localization
 algorithm to ensure that communication between the devices in the localization system is possible. El Agroudy et al. resolve this issue by keeping the anchor node 
@@ -400,7 +400,7 @@ which consisted of three anchor nodes and one end node, so that it consumed arou
 of the GPS module integrated in the Dragino Shield and found that their system outperforms GPS-based localization when at least four end nodes use the
 deployed anchor nodes.
 
-Despite these promising findings there is still room for improvement. Mackey et al. estimated the life time of a #text_qty("5000", "mAh")
+Despite these promising findings there is still room for improvement. Mackey et al. estimated the lifetime of a #text_qty("5000", "mAh")
 battery when used as a power source for the anchor or the end node. They found that their anchor node could run up to 200 hours with one
 battery charge, but their end node would only last for 90 hours. These values would make this solution practical in ad-hoc short-term
 scenarios where a localization system is need quick and only for a couple of days, but for remote long-term deployments improvements need
@@ -414,7 +414,7 @@ on fundamental assumptions taken about the environment and scenario the localiza
 that many nodes are deployed in a relatively dense space which simplifies the problem with communication coordination explained 
 earlier.
 
-The assumptions make it difficult to adopt the localization system proposed by Gotthard et al. for general use but they investigate
+The assumptions make it difficult to adopt the localization system proposed by Gotthard et al. for general use, but they investigate
 promising ideas which hopefully can be integrated into localization systems in the future to reduce their power consumption.
 
 == Similar Work <similar_work>
@@ -564,7 +564,7 @@ to the final design are presented in this section. For the sake of conciseness f
 where the context does not say otherwise, the localization system that was implemented for this thesis.
 
 == System Overview
-The localization system implemented for this thesis consists of multiple components. Some of them have physical other have only logical boundaries.
+The localization system implemented for this thesis consists of multiple components. Some of them have physical, others have only logical boundaries.
 The following graphic illustrates the localization system as a whole and gives a quick overview.
 
 #figure(
@@ -579,10 +579,10 @@ In-depth explanations of the individual components that make up one Anchor or on
 
 == Hardware
 Both device types of the localization system are built with the same hardware and differ only in firmware. Every device consist of a NUCLEO-WL55JC
-@noauthor_nucleo-wl55jc_nodate this is a evaluation board for the the STM32WL55JC microcontroller @noauthor_stm32wl55jc_nodate developed and manufactured by
+@noauthor_nucleo-wl55jc_nodate this is a evaluation board for the STM32WL55JC microcontroller @noauthor_stm32wl55jc_nodate developed and manufactured by
 STMicroelectronics (ST) @noauthor_stmicroelectronics_nodate. This board features LoRa transceiver, an integrated programmer and debugger, connectors for the GPIO pins
 of the microcontroller and easy power supply over Micro-USB. This solution was chosen for several reasons. Most important is of course that the hardware satisfies
-the basic requirements imposed by the goal of this thesis to implement and evaluate a mobile RSSI-based LoRa localization system. This criterium is fulfilled by 
+the basic requirements imposed by the goal of this thesis to implement and evaluate a mobile RSSI-based LoRa localization system. This criterion is fulfilled by 
 the NUCLEO-WL55JC evaluation board because it provides an integrated LoRa transceiver with built-in RSSI measurement and promises comparatively low power consumption
 in the datasheet @noauthor_stm32wl55xx_2022.
 Another reason for which the NUCLEO-WL55JC was chosen is the benefit of using prebuilt hardware with a big ecosystem like that of ST. This allows for rapid prototyping
@@ -691,8 +691,8 @@ that is needed for estimating the position of an End node.
 
 === Conditional compilation
 As described earlier, the firmware of the Anchor node and the End node differ because they 
-both fulfill different tasks in the localization system. Despite there differences these also share some similarities especially in the way the both 
-process incoming and outcoming communication data via LoRa. To avoid unnecessary code duplication both the firmware for the Anchor node and for the End node
+both fulfill different tasks in the localization system. Despite their differences these also share some similarities especially in the way the both 
+process incoming and outgoing communication data via LoRa. To avoid unnecessary code duplication both the firmware for the Anchor node and for the End node
 share the same codebase and node type specific code sections are conditionally included upon compilation depending on which device type was selected via 
 preprocessor macros. For this purpose there are three macro definitions which must be configured when compiling the firmware.
 
@@ -829,7 +829,7 @@ static void OnTxTimeout(void);
 // Timeout triggered while receiving
 static void OnRxTimeout(void);
 
-// Error occured during reception
+// Error occurred during reception
 static void OnRxError(void);
 ```
     ]
@@ -863,7 +863,7 @@ functions instead of configuring the peripheral registers themselves. This abstr
 #bold_txt[H]ardware #bold_txt[A]bstraction #bold_txt[L]ayer. Its documentation can be found here @noauthor_um2642_2022.
 
 For controlling the integrated LoRa transceiver of the STM32WL55JC microcontroller the _SubGHz_Phy_ driver was used additionally. 
-It already implements the most common used functionality like sending and receiving packets via LoRa and provides an easy to use
+It already implements the most common used functionality like sending and receiving packets via LoRa and provides an easy-to-use
 API with a single object `Radio` which is used to configure and control the radio transceiver. An example of how the event handlers
 are configured was demonstrated earlier in @event_handler_config. Transmission and reception of LoRa packets can be triggered by 
 calling methods of the global `Radio` object, demonstrated in the following listing.
@@ -1066,7 +1066,7 @@ typedef struct {
 
 During the transmission of the `AnchorResponse_t` a collision could occur which hinders the end node from decoding
 the packet. This happens when multiple anchor nodes start transmitting its response almost at the same time. To detect when this is happening
-another packet type `Ack_t` is introduced. An anchor nodes always expects an end node to respond to an successful `AnchorResponse_t` with
+another packet type `Ack_t` is introduced. An anchor nodes always expects an end node to respond to a successful `AnchorResponse_t` with
 an `Ack_t`. If the anchor node does not receive this `Ack_t` in a configurable amount of time it retries sending the `AnchorResponse_t`.
 The maximum of retries can also be configured via the macro `MAX_ANCHOR_RESPONSE_RETRIES`, which defaults to 3. When this number of
 retries is reached the anchor node gives up and goes to sleep until it receives the next `Ping_t`.
@@ -1086,16 +1086,16 @@ typedef struct {
     ]
 ]
 
-The end uses the decoded RSSI value `recv_rssi` from an successful `AnchorResponse_t` to calculate the distance between
+The end uses the decoded RSSI value `recv_rssi` from a successful `AnchorResponse_t` to calculate the distance between
 itself and the anchor node with a path-loss model. The chosen path-loss model is the log-normal model which is explained in more detail during the
 evaluation of the distance estimation in @distance_evaluation. The estimated distances can then be combined to calculate a position relative
 to the positions of the anchor nodes by employing the trilateration algorithm or its generalization the multilateration algorithm. These
-algorithms are explained in @multilateration. To obtain a absolute position the relative position can be added to the absolute position of an
+algorithms are explained in @multilateration. To obtain an absolute position the relative position can be added to the absolute position of an
 anchor node.
 
 #v(.4em)
 The rest of this section demonstrates the architectural design decisions of the localization system
-by highlighting some of the key features of the chosen implementation.
+by highlighting some key features of the chosen implementation.
 
 A significant feature of this localization system is the amount of control the end node can exert. Because the whole system 
 relies on the periodic `Ping_t` packets of the end node, it can effectively regulate the frequency with which measurements are taken.
@@ -1111,7 +1111,7 @@ environmental influences on the localization process.
 The main drawback of this approach is the amount of transmitted packets. In comparison to the distance estimation approach implemented by
 Bluetooth Low Energy beacons @faragher_location_2015 @qamaz_experimental_2022, this implementation needs twice as much packets for a single
 localization cycle. This is because with the BLE approach the anchor nodes periodically send short packets which are received by the end node
-and are used to estimate the distances between itself and the anchor nodes without the need for reponse to the ping message. 
+and are used to estimate the distances between itself and the anchor nodes without the need for response to the ping message. 
 
 Despite this drawback, the benefits would enable some interesting advantages over existing solutions. For this reason this localization
 method was chosen for the evaluated system.
